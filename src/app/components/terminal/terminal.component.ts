@@ -7,6 +7,7 @@ import {
 } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { KeyboardService } from 'src/app/services/keyboard.service'
+import { SessionService } from 'src/app/services/session.service'
 
 @Component({
   selector: 'app-terminal',
@@ -20,7 +21,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   @ViewChild('terminal') terminalEl!: ElementRef
 
-  constructor(private keyboard: KeyboardService) {}
+  constructor(
+    private keyboard: KeyboardService,
+    private session: SessionService
+  ) {}
 
   ngOnInit(): void {
     this.subsink.push(this.keyboard.key$.subscribe(this.parseKey.bind(this)))
@@ -48,20 +52,20 @@ export class TerminalComponent implements OnInit, OnDestroy {
     } else {
       this.handleKey(key)
     }
+
+    this.session.incrementCharacterCount()
   }
 
   handleKey(key: string) {
     if (key !== this.queue[0]) {
       this.flashTerminal()
+      this.session.incrementErrorCount()
     } else {
       this.stack += this.queue[0]
       this.queue = this.queue.substring(1)
     }
   }
 
-  /**
-   * Handle the "Backspace" key.
-   */
   handleBackspace() {
     if (this.stack.length === 0) return
 
