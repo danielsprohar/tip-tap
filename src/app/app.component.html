@@ -1,13 +1,16 @@
 <main>
   <section class="container">
-    <button (click)="startTimer()">Start</button>
-    <button (click)="startTimer()" [disabled]="isTicking">Reset</button>
+    <button (click)="startTimer($event)">Start</button>
+    <button (click)="startTimer($event)">Reset</button>
   </section>
 
   <section class="container">
-    <p *ngIf="timer$ | async as timer; else default">{{ timer }}</p>
+    <span>Time remaining</span>
+    <div *ngIf="timer$ | async as timer; else default">
+      <p>{{ sessionDuration - timer }}</p>
+    </div>
     <ng-template #default>
-      <p>0</p>
+      <p>{{ sessionDuration }}</p>
     </ng-template>
     <p>{{ message }}</p>
   </section>

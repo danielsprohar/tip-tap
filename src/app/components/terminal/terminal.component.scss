@@ -1,4 +1,4 @@
-.terminal {
+#terminal {
   display: flex;
   font-size: 1.25rem;
   font-family: monospace;
@@ -7,18 +7,77 @@
   overflow: hidden;
 }
 
-.stack,
-.queue {
-  // flex: 1;
+#stack,
+#queue {
   width: 50%;
+  white-space: pre;
 }
 
-.stack {
+#stack {
+  display: flex;
+  flex-direction: row-reverse;
   text-align: right;
 }
 
-.queue {
+#queue {
   text-align: left;
-  text-overflow: clip;
-  white-space: pre;
+}
+
+#cursor {
+  min-height: 100%;
+  width: 1px;
+  border: thin solid;
+  border-color: var(--primary);
+  animation: blink 1s step-end infinite;
+  -webkit-animation: blink 1s step-end infinite;
+}
+
+.flash {
+  -webkit-animation-name: flash-animation;
+  -webkit-animation-duration: 0.1s;
+
+  animation-name: flash-animation;
+  animation-duration: 0.1s;
+}
+
+@-webkit-keyframes flash-animation {
+  from {
+    background: var(--secondary);
+    color: #000;
+  }
+  to {
+    background: default;
+  }
+}
+
+@keyframes flash-animation {
+  from {
+    background: var(--secondary);
+    color: #000;
+  }
+  to {
+    background: default;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    visibility: hidden;
+  }
+
+  50% {
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes blink {
+  from,
+  to {
+    visibility: hidden;
+  }
+
+  50% {
+    visibility: visible;
+  }
 }
