@@ -1,0 +1,24 @@
+.terminal {
+  display: flex;
+  font-size: 1.25rem;
+  font-family: monospace;
+  border: thin solid;
+  padding: 0.5rem 0.25rem;
+  overflow: hidden;
+}
+
+.stack,
+.queue {
+  // flex: 1;
+  width: 50%;
+}
+
+.stack {
+  text-align: right;
+}
+
+.queue {
+  text-align: left;
+  text-overflow: clip;
+  white-space: pre;
+}
