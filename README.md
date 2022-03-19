@@ -4,6 +4,8 @@
 
 That's the sound of your keyboard when you're in the zone, typing your life away!
 
+![Session preview](src/assets/images/session_preview.png)
+
 ## Prequisites
 
 In order to use this application you must first install [Node.js](https://www.nodejs.org). Follow the instructions provided by Node.js to complete the installation.
