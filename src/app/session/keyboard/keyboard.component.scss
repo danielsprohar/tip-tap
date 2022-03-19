@@ -103,15 +103,12 @@
 
 .keyboard-hint {
   background: var(--primary);
+  color: #fff !important;
 }
 
 @media (prefers-color-scheme: dark) {
   .keyboard-row > * {
     color: #eee;
     border-color: #eee;
-  }
-
-  .keyboard-hint {
-    background: var(--primary);
   }
 }
