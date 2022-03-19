@@ -47,7 +47,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   init() {
     const charSpace = new CharacterSpaceBuilder(this.lesson!).build()
     this.queue = this.rwg.createSessionText(charSpace, this.wordCount)
-    // TODO: Highlight the next key
+    this.keyboard.setHighlightKey(this.queue.charAt(0))
   }
 
   flashTerminal() {
@@ -69,6 +69,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
       this.handleBackspace()
     } else {
       this.handleKey(key)
+    }
+
+    if (this.queue.length) {
+      this.keyboard.setHighlightKey(this.queue.charAt(0))
     }
 
     this.session.incrementCharacterCount()

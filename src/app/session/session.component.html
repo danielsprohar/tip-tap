@@ -1,10 +1,10 @@
 <ng-container *ngIf="lesson$ | async as lesson; else loading">
-  <section class="container">
+  <div class="container">
     <div class="grid">
       <button (click)="startTimer($event)">Start</button>
       <button (click)="startTimer($event)">Reset</button>
     </div>
-  </section>
+  </div>
 
   <section class="container">
     <table>
@@ -17,10 +17,10 @@
       <tbody>
         <tr>
           <td *ngIf="timer$ | async as timer; else default">
-            {{ sessionDuration - timer }}
+            {{ session.duration - timer }}
           </td>
           <ng-template #default>
-            <td>{{ sessionDuration }}</td>
+            <td>{{ session.duration }}</td>
           </ng-template>
           <ng-container
             *ngIf="metrica$ | async as metrica; else defaultMetrica"
@@ -40,6 +40,7 @@
   </section>
 
   <app-terminal [lesson]="lesson"></app-terminal>
+  <app-keyboard></app-keyboard>
 </ng-container>
 
 <ng-template #loading>

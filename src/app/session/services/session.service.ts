@@ -5,6 +5,7 @@ import { Metrica } from '../models/metrica'
 @Injectable()
 export class SessionService {
   private metricaSubject = new BehaviorSubject<Metrica>(new Metrica())
+  private readonly sessionDuration = 60
 
   constructor() {}
 
@@ -14,6 +15,10 @@ export class SessionService {
 
   get metrica$() {
     return this.metricaSubject.asObservable()
+  }
+
+  get duration() {
+    return this.sessionDuration
   }
 
   setMetrica(metrica: Metrica) {

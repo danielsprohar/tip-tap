@@ -35,15 +35,14 @@ export class SessionComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private timerSub?: Subscription
   private keyboardHandler?: any
-  readonly sessionDuration = 15 // seconds
 
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
   lesson$?: Observable<Lesson>
 
   constructor(
+    readonly session: SessionService,
     private document: Document,
-    private session: SessionService,
     private keyboard: KeyboardService,
     private route: ActivatedRoute
   ) {}
@@ -77,7 +76,7 @@ export class SessionComponent implements OnInit, OnDestroy {
   private createTimer() {
     return timer(0, 1000).pipe(
       shareReplay(),
-      takeWhile((secondsElapsed) => secondsElapsed <= this.sessionDuration),
+      takeWhile((secondsElapsed) => secondsElapsed <= this.session.duration),
       tap((secondsElapsed) => this.session.calcWordsPerMinute(secondsElapsed)),
       finalize(() => {
         this.document.removeEventListener('keyup', this.keyboardHandler, true)
