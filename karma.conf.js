@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/tippity-type'),
+      dir: require('path').join(__dirname, './coverage/tip-tap'),
       subdir: '.',
       reporters: [
         { type: 'html' },
