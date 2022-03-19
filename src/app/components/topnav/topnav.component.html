@@ -1,0 +1,25 @@
+<nav #navbar class="container-fluid">
+  <ul class="links-mobile">
+    <li>
+      <a
+        href="javascript:void(0);"
+        class="hamburger"
+        (click)="toggleNav($event)"
+      >
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+    <li><a routerLink="/">TipTap</a></li>
+  </ul>
+
+  <ul class="links">
+    <li><a routerLink="/">TipTap</a></li>
+    <li><a routerLink="/">Lessons</a></li>
+    <li><a routerLink="/">Session</a></li>
+  </ul>
+
+  <ul class="links-auth">
+    <li><a href="">Login</a></li>
+    <li><a href="">Sign up</a></li>
+  </ul>
+</nav>
