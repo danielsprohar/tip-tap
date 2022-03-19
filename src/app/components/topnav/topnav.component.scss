@@ -1,22 +1,22 @@
-nav,
-nav ul {
-  display: flex;
-}
-
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
   justify-content: space-between;
   background: var(--dropdown-background-color);
-  box-shadow: var(--dropdown-box-shadow);
 
   ol,
   ul {
+    display: flex;
     align-items: center;
     margin-bottom: 0;
     padding: 0;
     list-style: none;
 
     li > a {
-      color: var(--contrast)
+      color: var(--contrast);
     }
   }
 

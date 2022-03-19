@@ -1,1 +1,204 @@
-<p>lessons works!</p>
+<app-sidenav></app-sidenav>
+
+<div class="container content">
+  <h1>Explore Lessons</h1>
+
+  <section>
+    <section label="Beginner">
+      <section class="my-1" aria-labelledby="beginner">
+        <h2 id="beginner">Beginner</h2>
+        <div>
+          <section aria-labelledby="beginner_home_keys">
+            <h3 id="beginner_home_keys">Home Keys</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'left', isHomeKeys: true }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'beginner',
+                  hand: 'right',
+                  isHomeKeys: true
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'both', isHomeKeys: true }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+
+          <section aria-labelledby="beginner_left_hand">
+            <h3 id="beginner_left_hand">Left Hand</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'left', finger: 'pinky' }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'left', finger: 'ring' }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'left', finger: 'middle' }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'left', finger: 'pointy' }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+
+          <section aria-labelledby="beginner_right_hand">
+            <h3 id="beginner_right_hand">Right Hand</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'beginner',
+                  hand: 'right',
+                  finger: 'pointy'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'beginner',
+                  hand: 'right',
+                  finger: 'middle'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'right', finger: 'ring' }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{ level: 'beginner', hand: 'right', finger: 'pinky' }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section label="Intermediate">
+      <section class="my-1" aria-labelledby="intermediate">
+        <h2 id="intermediate">Intermediate</h2>
+        <div>
+          <section aria-labelledby="intermediate_left_hand">
+            <h3 id="intermediate_left_hand">Left Hand</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'left',
+                  finger: 'pinky'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'left',
+                  finger: 'ring'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'left',
+                  finger: 'middle'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'left',
+                  finger: 'pointy'
+                }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+
+          <section aria-labelledby="intermediate_right_hand">
+            <h3 id="intermediate_right_hand">Right Hand</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'right',
+                  finger: 'pointy'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'right',
+                  finger: 'middle'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'right',
+                  finger: 'ring'
+                }"
+              >
+              </app-lesson-detail>
+
+              <app-lesson-detail
+                [lesson]="{
+                  level: 'intermediate',
+                  hand: 'right',
+                  finger: 'pinky'
+                }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+
+          <section aria-labelledby="intermediate_both_hands">
+            <h3 id="intermediate_both_hands">Both Hands</h3>
+            <div>
+              <app-lesson-detail
+                [lesson]="{ level: 'intermediate', hand: 'both' }"
+              >
+              </app-lesson-detail>
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section label="Advanced">
+      <section class="my-1" aria-labelledby="advanced">
+        <h2 id="advanced">Advanced</h2>
+        <div></div>
+        <p>In progress 🏗👷‍♂️</p>
+        <!-- <div></div> -->
+      </section>
+    </section>
+  </section>
+</div>

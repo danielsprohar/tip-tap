@@ -1,5 +1,5 @@
 import { Finger, Hand, Lesson } from '../models/lesson'
-import * as Keyboard from 'src/assets/keyboard-keys.json'
+import Keyboard from 'src/assets/keyboard-keys.json'
 
 type CharacterSpace = string[]
 
