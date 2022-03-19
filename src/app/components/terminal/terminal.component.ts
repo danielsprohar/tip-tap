@@ -27,7 +27,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subsink.push(this.keyboard.key$.subscribe(this.parseKey.bind(this)))
+    this.subsink.push(this.keyboard.event$.subscribe(this.parseKey.bind(this)))
   }
 
   ngOnDestroy(): void {
@@ -42,8 +42,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }, 100)
   }
 
-  parseKey(key: string) {
+  parseKey(e: KeyboardEvent) {
     if (this.queue.length === 0) return
+
+    const { key } = e
     if (key === 'Shift') return
     if (key === 'F12') return
 

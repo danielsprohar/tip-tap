@@ -5,15 +5,18 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class KeyboardService {
-  private keySubject = new Subject<string>()
+  private keyboardEventSubject = new Subject<KeyboardEvent>()
 
   constructor() { }
 
-  get key$() {
-    return this.keySubject.asObservable()
+  /**
+   * Get an instance of a new `Observable` to listen for events emitted by the keyboard.
+   */
+  get event$() {
+    return this.keyboardEventSubject.asObservable()
   }
 
-  setKey(value: string) {
-    this.keySubject.next(value)
+  setKeyboardEvent(e: KeyboardEvent) {
+    this.keyboardEventSubject.next(e)
   }
 }

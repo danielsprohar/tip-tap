@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     event.preventDefault()
-    this.keyboard.setKey(event.key)
+    this.keyboard.setKeyboardEvent(event)
   }
 
   private createTimer() {
