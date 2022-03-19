@@ -1,7 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { finalize, Observable, shareReplay, Subscription, takeWhile, tap, timer } from 'rxjs'
+import { ActivatedRoute, ParamMap } from '@angular/router'
+import {
+  finalize,
+  map,
+  Observable,
+  shareReplay,
+  Subscription,
+  takeWhile,
+  tap,
+  timer,
+} from 'rxjs'
+import { LessonBuilder } from '../lessons/builders/LessonBuilder'
+import { Lesson } from '../lessons/models/lesson'
 import { Metrica } from './models/metrica'
 import { KeyboardService } from './services/keyboard.service'
+import { RandomWordGeneratorService } from './services/random-word-generator.service'
 import { SessionService } from './services/session.service'
 
 @Component({
@@ -11,6 +24,7 @@ import { SessionService } from './services/session.service'
   providers: [
     SessionService,
     KeyboardService,
+    RandomWordGeneratorService,
     {
       provide: Document,
       useValue: document,
@@ -25,16 +39,23 @@ export class SessionComponent implements OnInit, OnDestroy {
 
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
+  lesson$?: Observable<Lesson>
 
   constructor(
     private document: Document,
     private session: SessionService,
-    private keyboard: KeyboardService
+    private keyboard: KeyboardService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.keyboardHandler = this.handleKeyboard.bind(this)
     this.metrica$ = this.session.metrica$
+    this.lesson$ = this.route.queryParamMap.pipe(
+      map((paramMap: ParamMap) =>
+        new LessonBuilder().buildFromParamMap(paramMap)
+      )
+    )
   }
 
   ngOnDestroy() {

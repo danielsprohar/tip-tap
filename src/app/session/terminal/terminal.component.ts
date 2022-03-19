@@ -1,12 +1,16 @@
 import {
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core'
 import { Subscription } from 'rxjs'
+import { CharacterSpaceBuilder } from 'src/app/lessons/builders/CharacterSpaceBuilder'
+import { Lesson } from 'src/app/lessons/models/lesson'
 import { KeyboardService } from '../services/keyboard.service'
+import { RandomWordGeneratorService } from '../services/random-word-generator.service'
 import { SessionService } from '../services/session.service'
 
 @Component({
@@ -16,22 +20,34 @@ import { SessionService } from '../services/session.service'
 })
 export class TerminalComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
-  queue = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nostrum nemo. Nam quam sed nulla quidem. Delectus nam provident quod omnis minima minus. Quasi ipsum cumque vel ducimus nihil. Qui.`
+  private readonly wordCount = 150
+  queue = 'Hello world'
   stack = ''
 
+  @Input() lesson?: Lesson
   @ViewChild('terminal') terminalEl!: ElementRef
 
   constructor(
     private keyboard: KeyboardService,
-    private session: SessionService
+    private session: SessionService,
+    private rwg: RandomWordGeneratorService
   ) {}
 
   ngOnInit(): void {
     this.subsink.push(this.keyboard.event$.subscribe(this.parseKey.bind(this)))
+    if (this.lesson) {
+      this.init()
+    }
   }
 
   ngOnDestroy(): void {
     this.subsink.forEach((sub) => sub.unsubscribe())
+  }
+
+  init() {
+    const charSpace = new CharacterSpaceBuilder(this.lesson!).build()
+    this.queue = this.rwg.createSessionText(charSpace, this.wordCount)
+    // TODO: Highlight the next key
   }
 
   flashTerminal() {
