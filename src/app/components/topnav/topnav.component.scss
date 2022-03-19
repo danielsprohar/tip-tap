@@ -5,7 +5,11 @@ nav {
   right: 0;
   display: flex;
   justify-content: space-between;
-  background: var(--dropdown-background-color);
+  color: #fff;
+  background-color: var(--contrast);
+  a {
+    color: var(--contrast-inverse);
+  }
 
   ol,
   ul {
@@ -14,10 +18,6 @@ nav {
     margin-bottom: 0;
     padding: 0;
     list-style: none;
-
-    li > a {
-      color: var(--contrast);
-    }
   }
 
   ol:first-of-type,
@@ -41,6 +41,16 @@ Show the link that contains should open and close the topnav (.hamburger) */
 
     .links-mobile {
       display: flex;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  nav {
+    background: var(--dropdown-background-color);
+
+    a {
+      color: var(--contrast);
     }
   }
 }
