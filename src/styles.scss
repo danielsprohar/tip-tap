@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+.centered {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: thin solid;
+  border-color: var(--accordion-border-color);
+}
