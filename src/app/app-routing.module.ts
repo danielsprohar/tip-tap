@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./lessons/lessons.module').then((m) => m.LessonsModule),
   },
+  {
+    path: 'session',
+    loadChildren: () =>
+      import('./session/session.module').then((m) => m.SessionModule),
+  },
 ]
 
 @NgModule({

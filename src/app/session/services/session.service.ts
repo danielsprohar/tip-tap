@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { Metrica } from '../models/metrica'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class SessionService {
   private metricaSubject = new BehaviorSubject<Metrica>(new Metrica())
 

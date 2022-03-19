@@ -1,44 +1,6 @@
 <app-topnav></app-topnav>
+
 <main>
-  <section class="container">
-    <div class="grid">
-      <button (click)="startTimer($event)">Start</button>
-      <button (click)="startTimer($event)">Reset</button>
-    </div>
-  </section>
-
-  <section class="container">
-    <table>
-      <thead>
-        <th>Time remaining</th>
-        <th>Errors</th>
-        <th>Total characters</th>
-        <th>Words / Min</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td *ngIf="timer$ | async as timer; else default">
-            {{ sessionDuration - timer }}
-          </td>
-          <ng-template #default>
-            <td>{{ sessionDuration }}</td>
-          </ng-template>
-          <ng-container *ngIf="metrica$ | async as metrica; else defaultMetrica">
-            <td>{{ metrica.errorCount }}</td>
-            <td>{{ metrica.characterCount }}</td>
-            <td>{{ metrica.wpm }}</td>
-          </ng-container>
-          <ng-template #defaultMetrica>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-          </ng-template>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <app-terminal></app-terminal>
 
   <router-outlet></router-outlet>
 </main>

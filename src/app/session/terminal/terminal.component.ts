@@ -6,8 +6,8 @@ import {
   ViewChild,
 } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { KeyboardService } from 'src/app/services/keyboard.service'
-import { SessionService } from 'src/app/services/session.service'
+import { KeyboardService } from '../services/keyboard.service'
+import { SessionService } from '../services/session.service'
 
 @Component({
   selector: 'app-terminal',
