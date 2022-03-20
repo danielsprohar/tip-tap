@@ -1,7 +1,7 @@
 <ng-container *ngIf="lesson$ | async as lesson; else loading">
   <div class="container centered">
     <ng-container *ngIf="!lesson.book; else advanced">
-      <h2>{{ lesson.hand }} | {{ lesson.finger }}</h2>
+      <h2>{{ lesson.hand | titlecase }} Hand <span>&verbar;</span> {{ lesson.finger | titlecase }}</h2>
     </ng-container>
     <ng-template #advanced>
       <h2>{{ lesson.book?.title! | dehyphenate | titlecase }}</h2>
@@ -12,11 +12,16 @@
   <section class="container">
     <table>
       <thead>
-        <th>Time Remaining</th>
+        <th>Time</th>
         <th>Errors</th>
-        <th>Total Characters</th>
-        <th>Total Words</th>
-        <th>Words / Minute</th>
+        <th>Characters</th>
+        <th>Words</th>
+        <th
+          data-tooltip="Words per minute = (characters / 5) / time (in minutes)"
+        >
+          WPM
+          <span class="info-icon"><i class="fa-solid fa-circle-info"></i></span>
+        </th>
       </thead>
       <tbody>
         <tr>

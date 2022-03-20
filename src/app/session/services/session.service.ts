@@ -8,6 +8,7 @@ export class SessionService {
   private readonly showResultsSubject = new Subject<Metrica>()
   private readonly resetSubject = new Subject<boolean>()
   private readonly sessionDuration = 60
+  private readonly wordSize = 5
 
   constructor() {}
 
@@ -50,13 +51,18 @@ export class SessionService {
    * @param secondsElapsed The amount of time (in seconds)
    */
   calcWordsPerMinute(secondsElapsed: number) {
+    // https://www.speedtypingonline.com/typing-equations
     if (secondsElapsed === 0) return
 
     this.metricaSubject.next(
       new Metrica({
         ...this.metricaSubject.value,
         wpm: Math.floor(
-          (this.metricaSubject.value.characterCount * 60) / secondsElapsed
+          // words
+          this.metricaSubject.value.characterCount /
+            this.wordSize /
+            // over time
+            (secondsElapsed / 60)
         ),
       })
     )

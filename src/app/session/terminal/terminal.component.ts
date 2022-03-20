@@ -100,8 +100,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
     if (this.queue.length) {
       this.keyboard.setHighlightKey(this.queue.charAt(0))
     }
-
-    this.session.incrementCharacterCount()
   }
 
   handleKey(key: string) {
@@ -111,8 +109,11 @@ export class TerminalComponent implements OnInit, OnDestroy {
     } else {
       this.stack += this.queue[0]
       this.queue = this.queue.substring(1)
+
       if (this.queue.length && this.queue.charAt(0) === ' ') {
         this.session.incrementWordCount()
+      } else {
+        this.session.incrementCharacterCount()
       }
     }
   }
@@ -127,9 +128,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
     const popped = this.stack.charAt(this.stack.length - 1)
     this.queue = popped + this.queue
     this.stack = this.stack.substring(0, this.stack.length - 1)
+    this.session.incrementCharacterCount(-1)
   }
-
-  handleSpacebar() {}
 
   /**
    * Checks if the given value is a whitespace character.
