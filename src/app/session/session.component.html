@@ -1,11 +1,21 @@
 <ng-container *ngIf="lesson$ | async as lesson; else loading">
+  <div class="container centered">
+    <ng-container *ngIf="!lesson.book; else advanced">
+      <h2>{{ lesson.hand }} | {{ lesson.finger }}</h2>
+    </ng-container>
+    <ng-template #advanced>
+      <h2>{{ lesson.bookName | titlecase }} | Chapter {{ lesson.chapter }}</h2>
+    </ng-template>
+  </div>
+
   <section class="container">
     <table>
       <thead>
-        <th>Time remaining</th>
+        <th>Time Remaining</th>
         <th>Errors</th>
-        <th>Total characters</th>
-        <th>Words / Min</th>
+        <th>Total Characters</th>
+        <th>Total Words</th>
+        <th>Words / Minute</th>
       </thead>
       <tbody>
         <tr>
@@ -15,14 +25,17 @@
           <ng-template #default>
             <td>{{ session.duration }}</td>
           </ng-template>
+
           <ng-container
             *ngIf="metrica$ | async as metrica; else defaultMetrica"
           >
             <td>{{ metrica.errorCount }}</td>
             <td>{{ metrica.characterCount }}</td>
+            <td>{{ metrica.wordCount }}</td>
             <td>{{ metrica.wpm }}</td>
           </ng-container>
           <ng-template #defaultMetrica>
+            <td>0</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>

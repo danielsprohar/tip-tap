@@ -5,25 +5,27 @@ import { Finger, Hand, Lesson, Level } from '../models/lesson'
  * Build a new instance of a Lesson with the given ParamMap.
  */
 export class LessonBuilder {
-  private _level?: Level
-  private _hand?: Hand
-  private _finger?: Finger
+  private level?: Level
+  private hand?: Hand
+  private finger?: Finger
+  private book?: string
+  private chapter?: string
   private _isHomeKeys?: boolean
 
   constructor() {}
 
-  level(level: Level): LessonBuilder {
-    this._level = level
+  setLevel(level: Level): LessonBuilder {
+    this.level = level
     return this
   }
 
-  hand(hand: Hand): LessonBuilder {
-    this._hand = hand
+  setHand(hand: Hand): LessonBuilder {
+    this.hand = hand
     return this
   }
 
-  finger(finger: Finger): LessonBuilder {
-    this._finger = finger
+  setFinger(finger: Finger): LessonBuilder {
+    this.finger = finger
     return this
   }
 
@@ -48,10 +50,12 @@ export class LessonBuilder {
 
   build(): Lesson {
     return new Lesson({
-      level: this._level!,
-      hand: this._hand!,
-      finger: this._finger,
+      level: this.book ? 'advanced' : this.level!,
+      hand: this.book ? 'both' : this.hand!,
+      finger: this.finger,
       isHomeKeys: this._isHomeKeys,
+      book: this.book,
+      chapter: this.chapter,
     })
   }
 }

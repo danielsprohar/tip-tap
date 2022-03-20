@@ -7,6 +7,7 @@ import { TopnavComponent } from './components/topnav/topnav.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component'
     WelcomeComponent,
     SnackbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

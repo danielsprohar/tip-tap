@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'
 import {
   Component,
   ElementRef,
@@ -6,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core'
-import { Subscription } from 'rxjs'
+import { map, Subscription } from 'rxjs'
 import { CharacterSpaceBuilder } from 'src/app/lessons/builders/CharacterSpaceBuilder'
 import { Lesson } from 'src/app/lessons/models/lesson'
 import { KeyboardService } from '../services/keyboard.service'
@@ -21,7 +22,7 @@ import { SessionService } from '../services/session.service'
 export class TerminalComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private readonly wordCount = 150
-  queue = 'Hello world'
+  queue = ':'
   stack = ''
 
   @Input() lesson?: Lesson
@@ -30,7 +31,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(
     private keyboard: KeyboardService,
     private session: SessionService,
-    private rwg: RandomWordGeneratorService
+    private rwg: RandomWordGeneratorService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -44,12 +46,37 @@ export class TerminalComponent implements OnInit, OnDestroy {
     this.subsink.forEach((sub) => sub.unsubscribe())
   }
 
-  init() {
-    const charSpace = new CharacterSpaceBuilder(this.lesson!).build()
-    this.queue = this.rwg.createSessionText(charSpace, this.wordCount)
-    this.keyboard.setHighlightKey(this.queue.charAt(0))
+  private fetchBook(lesson: Lesson) {
+    const url = `assets/gutenberg/${lesson.book}/chapter-${lesson.chapter}.txt`
+    return this.http
+      .get(url, { responseType: 'text' })
+      .pipe(map((text: string) => text.replace(/[\r\n]+/gm, ' ')))
   }
 
+  /**
+   * Initialize the terminal
+   * @returns
+   */
+  init() {
+    if (!this.lesson) return
+
+    if (!this.lesson.book) {
+      const charSpace = new CharacterSpaceBuilder(this.lesson!).build()
+      this.queue = this.rwg.createSessionText(charSpace, this.wordCount)
+      this.keyboard.setHighlightKey(this.queue.charAt(0))
+    } else {
+      this.subsink.push(
+        this.fetchBook(this.lesson).subscribe((text) => {
+          this.queue = text
+          this.keyboard.setHighlightKey(this.queue.charAt(0))
+        })
+      )
+    }
+  }
+
+  /**
+   * Flash the terminal when an incorrect key is pressed
+   */
   flashTerminal() {
     const el$ = this.terminalEl.nativeElement as HTMLElement
     el$.classList.add('flash')
@@ -85,15 +112,25 @@ export class TerminalComponent implements OnInit, OnDestroy {
     } else {
       this.stack += this.queue[0]
       this.queue = this.queue.substring(1)
+      if (this.queue.length && this.queue.charAt(0) === ' ') {
+        this.session.incrementWordCount()
+      }
     }
   }
 
   handleBackspace() {
     if (this.stack.length === 0) return
 
-    this.queue = this.stack.charAt(this.stack.length - 1) + this.queue
+    if (this.queue.charAt(0) === ' ') {
+      this.session.incrementWordCount(-1)
+    }
+
+    const popped = this.stack.charAt(this.stack.length - 1)
+    this.queue = popped + this.queue
     this.stack = this.stack.substring(0, this.stack.length - 1)
   }
+
+  handleSpacebar() {}
 
   /**
    * Checks if the given value is a whitespace character.
