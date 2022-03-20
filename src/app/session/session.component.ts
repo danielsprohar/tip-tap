@@ -36,6 +36,7 @@ export class SessionComponent implements OnInit, OnDestroy {
   private timerSub?: Subscription
   private keyboardHandler?: any
 
+  inProgress = false
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
   lesson$?: Observable<Lesson>
@@ -55,6 +56,8 @@ export class SessionComponent implements OnInit, OnDestroy {
         new LessonBuilder().buildFromParamMap(paramMap)
       )
     )
+
+    this.init()
   }
 
   ngOnDestroy() {
@@ -64,15 +67,25 @@ export class SessionComponent implements OnInit, OnDestroy {
     this.subsink.forEach((sub) => sub.unsubscribe())
   }
 
+  /**
+   * Handle the keyboard event
+   * @param event The keyboard event
+   * @returns
+   */
   private handleKeyboard(event: KeyboardEvent) {
-    if (event.isComposing) {
-      return
-    }
-
+    if (event.isComposing) return
     event.preventDefault()
+
+    if (!this.inProgress) {
+      this.inProgress = true
+    }
     this.keyboard.setKeyboardEvent(event)
   }
 
+  /**
+   * Create the session's timer
+   * @returns The timer as an `Observable`
+   */
   private createTimer() {
     return timer(0, 1000).pipe(
       shareReplay(),
@@ -80,17 +93,26 @@ export class SessionComponent implements OnInit, OnDestroy {
       tap((secondsElapsed) => this.session.calcWordsPerMinute(secondsElapsed)),
       finalize(() => {
         this.document.removeEventListener('keyup', this.keyboardHandler, true)
+        this.session.showResults()
       })
     )
   }
 
-  startTimer(event: Event) {
-    const btn$ = event.target as HTMLButtonElement
-    btn$.blur()
-
-    this.session.reset()
+  /**
+   * Initialize the session
+   */
+  init() {
     this.document.addEventListener('keyup', this.keyboardHandler, true)
     this.timer$ = this.createTimer()
-    this.timerSub = this.timer$.subscribe()
+  }
+
+  /**
+   * Start the session
+   */
+  start() {
+    console.log('starting session')
+    if (this.timer$) {
+      this.timerSub = this.timer$.subscribe()
+    }
   }
 }

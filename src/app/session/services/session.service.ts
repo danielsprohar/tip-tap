@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Subject } from 'rxjs'
 import { Metrica } from '../models/metrica'
 
 @Injectable()
 export class SessionService {
-  private metricaSubject = new BehaviorSubject<Metrica>(new Metrica())
+  private readonly metricaSubject = new BehaviorSubject<Metrica>(new Metrica())
+  private readonly showResultsSubject = new Subject<Metrica>()
+  private readonly resetSubject = new Subject<boolean>()
   private readonly sessionDuration = 60
 
   constructor() {}
@@ -21,11 +23,25 @@ export class SessionService {
     return this.sessionDuration
   }
 
+  get results$() {
+    return this.showResultsSubject.asObservable()
+  }
+
+  get reset$() {
+    return this.resetSubject.asObservable()
+  }
+
   setMetrica(metrica: Metrica) {
+    console.log(metrica)
     this.metricaSubject.next(metrica)
   }
 
+  showResults() {
+    this.showResultsSubject.next(this.metricaSubject.value)
+  }
+
   reset() {
+    this.resetSubject.next(true)
     this.metricaSubject.next(new Metrica())
   }
 

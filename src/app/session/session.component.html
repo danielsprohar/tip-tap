@@ -1,11 +1,4 @@
 <ng-container *ngIf="lesson$ | async as lesson; else loading">
-  <div class="container">
-    <div class="grid">
-      <button (click)="startTimer($event)">Start</button>
-      <button (click)="startTimer($event)">Reset</button>
-    </div>
-  </div>
-
   <section class="container">
     <table>
       <thead>
@@ -16,7 +9,7 @@
       </thead>
       <tbody>
         <tr>
-          <td *ngIf="timer$ | async as timer; else default">
+          <td *ngIf="inProgress && (timer$ | async) as timer; else default">
             {{ session.duration - timer }}
           </td>
           <ng-template #default>
@@ -41,6 +34,7 @@
 
   <app-terminal [lesson]="lesson"></app-terminal>
   <app-keyboard></app-keyboard>
+  <app-results-dialog></app-results-dialog>
 </ng-container>
 
 <ng-template #loading>

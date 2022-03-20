@@ -1,11 +1,13 @@
 export class Metrica {
   errorCount = 0
   characterCount = 0
+  wordCount = 0
   wpm = 0
 
   constructor(props?: {
     errorCount: number
     characterCount: number
+    wordCount: number
     wpm: number
   }) {
     if (props) {
