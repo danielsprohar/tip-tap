@@ -8,6 +8,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { HttpClientModule } from '@angular/common/http'
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http'
     WelcomeComponent,
     SnackbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

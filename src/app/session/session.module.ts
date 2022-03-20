@@ -6,6 +6,7 @@ import { SessionComponent } from './session.component';
 import { TerminalComponent } from './terminal/terminal.component';
 import { KeyboardComponent } from './keyboard/keyboard.component';
 import { ResultsDialogComponent } from './results-dialog/results-dialog.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ResultsDialogComponent } from './results-dialog/results-dialog.componen
   ],
   imports: [
     CommonModule,
-    SessionRoutingModule
+    SessionRoutingModule,
+    SharedModule,
   ]
 })
 export class SessionModule { }
