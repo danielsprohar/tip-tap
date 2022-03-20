@@ -62,11 +62,20 @@ export class SessionService {
     )
   }
 
-  incrementCharacterCount() {
+  incrementCharacterCount(value = 1) {
     this.metricaSubject.next(
       new Metrica({
         ...this.metricaSubject.value,
-        characterCount: this.metricaSubject.value.characterCount + 1,
+        characterCount: this.metricaSubject.value.characterCount + value,
+      })
+    )
+  }
+
+  incrementWordCount(value = 1) {
+    this.metricaSubject.next(
+      new Metrica({
+        ...this.metricaSubject.value,
+        wordCount: this.metricaSubject.value.wordCount + value,
       })
     )
   }

@@ -5,6 +5,7 @@
       <thead>
         <th>Errors</th>
         <th>Total Characters</th>
+        <th>Total Words</th>
         <th>Word / Minute</th>
         <th>Accuracy</th>
       </thead>
@@ -12,6 +13,7 @@
         <tr *ngIf="metrica">
           <td>{{ metrica.errorCount }}</td>
           <td>{{ metrica.characterCount }}</td>
+          <td>{{ metrica.wordCount }}</td>
           <td>{{ metrica.wpm }}</td>
           <td>{{ metrica.accuracy | percent }}</td>
         </tr>
