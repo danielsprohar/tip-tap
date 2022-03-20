@@ -92,7 +92,7 @@ export class SessionComponent implements OnInit, OnDestroy {
       takeWhile((secondsElapsed) => secondsElapsed <= this.session.duration),
       tap((secondsElapsed) => this.session.calcWordsPerMinute(secondsElapsed)),
       finalize(() => {
-        this.document.removeEventListener('keyup', this.keyboardHandler, true)
+        this.document.removeEventListener('keydown', this.keyboardHandler, true)
         this.session.showResults()
       })
     )
@@ -102,7 +102,7 @@ export class SessionComponent implements OnInit, OnDestroy {
    * Initialize the session
    */
   init() {
-    this.document.addEventListener('keyup', this.keyboardHandler, true)
+    this.document.addEventListener('keydown', this.keyboardHandler, true)
     this.timer$ = this.createTimer()
   }
 

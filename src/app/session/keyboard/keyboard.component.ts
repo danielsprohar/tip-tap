@@ -54,7 +54,6 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostListener('window:resize')
   resize() {
     const keyboardEL: HTMLElement | null = document.getElementById('keyboard')
-
     if (keyboardEL && keyboardEL.parentNode) {
       const parent: Element | null = document.querySelector('.content')
       if (parent) {
@@ -63,40 +62,37 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
         this.renderer.setStyle(
           keyboardEL,
           'fontSize',
-          `${size}px`,
+          `${size}px !important`,
           RendererStyleFlags2.Important
         )
       }
     }
   }
 
-  isUpperCaseCharacter(character: string): boolean {
-    const charCode = character.charCodeAt(0)
+  isUpperCaseCharacter(value: string): boolean {
+    const charCode = value.charCodeAt(0)
     return 65 <= charCode && charCode <= 90
   }
 
-  isLowerCaseCharacter(character: string): boolean {
-    const charCode = character.charCodeAt(0)
+  isLowerCaseCharacter(value: string): boolean {
+    const charCode = value.charCodeAt(0)
     return 97 <= charCode && charCode <= 122
   }
 
-  isAlpha(pressedKey: string): boolean {
-    return (
-      this.isLowerCaseCharacter(pressedKey) ||
-      this.isUpperCaseCharacter(pressedKey)
-    )
+  isAlpha(key: string): boolean {
+    return this.isLowerCaseCharacter(key) || this.isUpperCaseCharacter(key)
   }
 
-  isDigit(pressedKey: string): boolean {
-    return Keyboard.digits.some((digit) => digit === pressedKey)
+  isDigit(key: string): boolean {
+    return Keyboard.digits.includes(key)
   }
 
   isRightHandShiftKey(key: string): boolean {
-    return Keyboard.rightHandShiftKeys.some((k) => k === key)
+    return Keyboard.rightHandShiftKeys.includes(key)
   }
 
   isLeftHandShiftKey(key: string): boolean {
-    return Keyboard.leftHandShiftKeys.some((k) => k === key)
+    return Keyboard.leftHandShiftKeys.includes(key)
   }
 
   /**
@@ -132,37 +128,30 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (key === ' ') {
       this.addHighlightStyle(document.getElementById('Space')!)
-      return
-    }
-
-    if (this.isDigit(key)) {
+    } else if (this.isDigit(key)) {
       this.addHighlightStyle(document.getElementById(key)!)
-      return
-    }
-
-    if (this.isAlpha(key)) {
+    } else if (this.isAlpha(key)) {
       this.addHighlightStyle(document.getElementById(key.toLowerCase())!)
 
       if (this.isRightHandShiftKey(key)) {
         this.addHighlightStyle(document.getElementById('ShiftRight')!)
-      } else {
-        this.addHighlightStyle(document.getElementById('ShiftLeft')!)
-      }
-
-      return
-    }
-
-    const keyboardEl: HTMLElement = this.keyboardElementRef.nativeElement
-    const keyEl =
-      document.getElementById(key) ||
-      keyboardEl.querySelector(`[data-char='${key}']`)
-
-    if (keyEl) {
-      this.addHighlightStyle(keyEl as HTMLElement)
-      if (this.isRightHandShiftKey(key)) {
-        this.addHighlightStyle(document.getElementById('ShiftRight')!)
       } else if (this.isLeftHandShiftKey(key)) {
         this.addHighlightStyle(document.getElementById('ShiftLeft')!)
+      }
+    } else {
+      // must be a "special" character
+      const keyboardEl: HTMLElement = this.keyboardElementRef.nativeElement
+      const keyEl =
+        document.getElementById(key) ||
+        keyboardEl.querySelector(`[data-char='${key}']`)
+
+      if (keyEl) {
+        this.addHighlightStyle(keyEl as HTMLElement)
+        if (this.isRightHandShiftKey(key)) {
+          this.addHighlightStyle(document.getElementById('ShiftRight')!)
+        } else if (this.isLeftHandShiftKey(key)) {
+          this.addHighlightStyle(document.getElementById('ShiftLeft')!)
+        }
       }
     }
   }
