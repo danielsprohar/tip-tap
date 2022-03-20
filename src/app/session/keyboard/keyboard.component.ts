@@ -115,7 +115,7 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
    * highlight the given key on the virtual keyboard.
    * @param el The key element
    */
-  addHighlightStylek(el: HTMLElement): void {
+  addHighlightStyle(el: HTMLElement): void {
     if (el) {
       el.classList.add(this.keyboardHintCSS)
       this.keyboardHintElements.push(el)
@@ -131,24 +131,22 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
     this.clearHighlightedKeyElements()
 
     if (key === ' ') {
-      this.addHighlightStylek(document.getElementById('Space')!)
+      this.addHighlightStyle(document.getElementById('Space')!)
       return
     }
 
     if (this.isDigit(key)) {
-      this.addHighlightStylek(document.getElementById(key)!)
+      this.addHighlightStyle(document.getElementById(key)!)
       return
     }
 
     if (this.isAlpha(key)) {
-      this.addHighlightStylek(document.getElementById(key.toLowerCase())!)
+      this.addHighlightStyle(document.getElementById(key.toLowerCase())!)
 
-      if (this.isUpperCaseCharacter(key)) {
-        if (this.isRightHandShiftKey(key)) {
-          this.addHighlightStylek(document.getElementById('ShiftRight')!)
-        } else {
-          this.addHighlightStylek(document.getElementById('ShiftLeft')!)
-        }
+      if (this.isRightHandShiftKey(key)) {
+        this.addHighlightStyle(document.getElementById('ShiftRight')!)
+      } else {
+        this.addHighlightStyle(document.getElementById('ShiftLeft')!)
       }
 
       return
@@ -160,13 +158,11 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
       keyboardEl.querySelector(`[data-char='${key}']`)
 
     if (keyEl) {
-      this.addHighlightStylek(keyEl as HTMLElement)
+      this.addHighlightStyle(keyEl as HTMLElement)
       if (this.isRightHandShiftKey(key)) {
-        this.addHighlightStylek(document.getElementById('ShiftRight')!)
-      }
-
-      if (this.isLeftHandShiftKey(key)) {
-        this.addHighlightStylek(document.getElementById('ShiftRight')!)
+        this.addHighlightStyle(document.getElementById('ShiftRight')!)
+      } else if (this.isLeftHandShiftKey(key)) {
+        this.addHighlightStyle(document.getElementById('ShiftLeft')!)
       }
     }
   }
