@@ -7,8 +7,12 @@ nav {
   justify-content: space-between;
   color: #fff;
   background-color: var(--contrast);
+
   a {
     color: var(--contrast-inverse);
+    &:hover {
+      color: var(--primary);
+    }
   }
 
   ol,
