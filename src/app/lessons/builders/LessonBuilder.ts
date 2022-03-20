@@ -1,4 +1,5 @@
 import { ParamMap } from '@angular/router'
+import { Book } from 'src/app/models/book'
 import { Finger, Hand, Lesson, Level } from '../models/lesson'
 
 /**
@@ -8,8 +9,7 @@ export class LessonBuilder {
   private level?: Level
   private hand?: Hand
   private finger?: Finger
-  private book?: string
-  private chapter?: string
+  private book?: Book
   private _isHomeKeys?: boolean
 
   constructor() {}
@@ -35,17 +35,22 @@ export class LessonBuilder {
   }
 
   buildFromParamMap(paramMap: ParamMap): Lesson {
-    let obj = {}
-
+    let obj: any = {}
     for (let key of paramMap.keys) {
-      const o = {
-        [key]: paramMap.get(key),
-      }
-
-      obj = { ...obj, ...o }
+      obj[key] = paramMap.get(key)
     }
 
-    return new Lesson({ ...(obj as Lesson) })
+    if (obj.book) {
+      return new Lesson({
+        ...obj,
+        book: new Book({
+          title: obj.book,
+          chapter: obj.chapter,
+        }),
+      })
+    }
+
+    return new Lesson({ ...obj })
   }
 
   build(): Lesson {
@@ -55,7 +60,6 @@ export class LessonBuilder {
       finger: this.finger,
       isHomeKeys: this._isHomeKeys,
       book: this.book,
-      chapter: this.chapter,
     })
   }
 }

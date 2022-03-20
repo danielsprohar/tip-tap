@@ -4,7 +4,8 @@
       <h2>{{ lesson.hand }} | {{ lesson.finger }}</h2>
     </ng-container>
     <ng-template #advanced>
-      <h2>{{ lesson.bookName | titlecase }} | Chapter {{ lesson.chapter }}</h2>
+      <h2>{{ lesson.book?.title! | dehyphenate | titlecase }}</h2>
+      <h3>{{ lesson.book?.chapter }}</h3>
     </ng-template>
   </div>
 

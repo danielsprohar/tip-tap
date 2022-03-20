@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http'
 import {
   Component,
   ElementRef,
@@ -7,9 +6,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core'
-import { map, Subscription } from 'rxjs'
+import { Subscription } from 'rxjs'
 import { CharacterSpaceBuilder } from 'src/app/lessons/builders/CharacterSpaceBuilder'
 import { Lesson } from 'src/app/lessons/models/lesson'
+import { BookMetadata } from 'src/app/models/book'
+import { BookChapterResponse, BookService } from 'src/app/services/book.service'
 import { KeyboardService } from '../services/keyboard.service'
 import { RandomWordGeneratorService } from '../services/random-word-generator.service'
 import { SessionService } from '../services/session.service'
@@ -22,6 +23,7 @@ import { SessionService } from '../services/session.service'
 export class TerminalComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private readonly wordCount = 150
+  bookMetadata?: BookMetadata
   queue = ':'
   stack = ''
 
@@ -32,7 +34,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
     private keyboard: KeyboardService,
     private session: SessionService,
     private rwg: RandomWordGeneratorService,
-    private http: HttpClient
+    private bs: BookService
   ) {}
 
   ngOnInit(): void {
@@ -44,13 +46,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subsink.forEach((sub) => sub.unsubscribe())
-  }
-
-  private fetchBook(lesson: Lesson) {
-    const url = `assets/gutenberg/${lesson.book}/chapter-${lesson.chapter}.txt`
-    return this.http
-      .get(url, { responseType: 'text' })
-      .pipe(map((text: string) => text.replace(/[\r\n]+/gm, ' ')))
   }
 
   /**
@@ -66,10 +61,14 @@ export class TerminalComponent implements OnInit, OnDestroy {
       this.keyboard.setHighlightKey(this.queue.charAt(0))
     } else {
       this.subsink.push(
-        this.fetchBook(this.lesson).subscribe((text) => {
-          this.queue = text
-          this.keyboard.setHighlightKey(this.queue.charAt(0))
-        })
+        // TODO: Move this into a resolver
+        this.bs
+          .getChapter(this.lesson.book!)
+          .subscribe((res: BookChapterResponse) => {
+            this.queue = res.text
+            this.bookMetadata = res.metadata
+            this.keyboard.setHighlightKey(this.queue.charAt(0))
+          })
       )
     }
   }
