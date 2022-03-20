@@ -1,7 +1,12 @@
 <section class="container">
-  <article #terminal id="terminal">
-    <div id="stack">{{ stack }}</div>
-    <div id="cursor"></div>
-    <div id="queue">{{ queue }}</div>
-  </article>
+  <ng-container *ngIf="lesson; else loading">
+    <article #terminal id="terminal">
+      <div id="stack">{{ stack }}</div>
+      <div id="cursor"></div>
+      <div id="queue">{{ queue }}</div>
+    </article>
+  </ng-container>
+  <ng-template #loading>
+    <article aria-busy="true"></article>
+  </ng-template>
 </section>

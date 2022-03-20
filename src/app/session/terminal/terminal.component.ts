@@ -61,7 +61,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
       this.keyboard.setHighlightKey(this.queue.charAt(0))
     } else {
       this.subsink.push(
-        // TODO: Move this into a resolver
         this.bs
           .getChapter(this.lesson.book!)
           .subscribe((res: BookChapterResponse) => {
