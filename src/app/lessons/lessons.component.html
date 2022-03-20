@@ -10,21 +10,35 @@
             <h3 id="beginner_home_keys">Home Keys</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'left', isHomeKeys: true }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'left',
+                    isHomeKeys: true
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'beginner',
-                  hand: 'right',
-                  isHomeKeys: true
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'right',
+                    isHomeKeys: true
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'both', isHomeKeys: true }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'both',
+                    isHomeKeys: true
+                  })
+                "
               >
               </app-lesson-detail>
             </div>
@@ -34,22 +48,46 @@
             <h3 id="beginner_left_hand">Left Hand</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'left', finger: 'pinky' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'left',
+                    finger: 'pinky'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'left', finger: 'ring' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'left',
+                    finger: 'ring'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'left', finger: 'middle' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'left',
+                    finger: 'middle'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'left', finger: 'pointy' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'left',
+                    finger: 'pointy'
+                  })
+                "
               >
               </app-lesson-detail>
             </div>
@@ -59,30 +97,46 @@
             <h3 id="beginner_right_hand">Right Hand</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{
-                  level: 'beginner',
-                  hand: 'right',
-                  finger: 'pointy'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'right',
+                    finger: 'pointy'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'beginner',
-                  hand: 'right',
-                  finger: 'middle'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'right',
+                    finger: 'middle'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'right', finger: 'ring' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'right',
+                    finger: 'ring'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{ level: 'beginner', hand: 'right', finger: 'pinky' }"
+                [lesson]="
+                  createLesson({
+                    level: 'beginner',
+                    hand: 'right',
+                    finger: 'pinky'
+                  })
+                "
               >
               </app-lesson-detail>
             </div>
@@ -99,38 +153,46 @@
             <h3 id="intermediate_left_hand">Left Hand</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'left',
-                  finger: 'pinky'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'left',
+                    finger: 'pinky'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'left',
-                  finger: 'ring'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'left',
+                    finger: 'ring'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'left',
-                  finger: 'middle'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'left',
+                    finger: 'middle'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'left',
-                  finger: 'pointy'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'left',
+                    finger: 'pointy'
+                  })
+                "
               >
               </app-lesson-detail>
             </div>
@@ -140,38 +202,46 @@
             <h3 id="intermediate_right_hand">Right Hand</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'right',
-                  finger: 'pointy'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'right',
+                    finger: 'pointy'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'right',
-                  finger: 'middle'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'right',
+                    finger: 'middle'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'right',
-                  finger: 'ring'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'right',
+                    finger: 'ring'
+                  })
+                "
               >
               </app-lesson-detail>
 
               <app-lesson-detail
-                [lesson]="{
-                  level: 'intermediate',
-                  hand: 'right',
-                  finger: 'pinky'
-                }"
+                [lesson]="
+                  createLesson({
+                    level: 'intermediate',
+                    hand: 'right',
+                    finger: 'pinky'
+                  })
+                "
               >
               </app-lesson-detail>
             </div>
@@ -181,7 +251,7 @@
             <h3 id="intermediate_both_hands">Both Hands</h3>
             <div>
               <app-lesson-detail
-                [lesson]="{ level: 'intermediate', hand: 'both' }"
+                [lesson]="createLesson({ level: 'intermediate', hand: 'both' })"
               >
               </app-lesson-detail>
             </div>
