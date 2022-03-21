@@ -28,8 +28,10 @@ export class ResultsDialogComponent implements OnInit, OnDestroy {
   constructor(private readonly session: SessionService) {}
 
   ngOnInit(): void {
-    this.sub = this.session.results$.subscribe((metrica: Metrica) => {
-      this.open(metrica)
+    this.sub = this.session.results$.subscribe((metrica: Metrica | null) => {
+      if (metrica) {
+        this.open(metrica)
+      }
     })
   }
 
@@ -72,6 +74,7 @@ export class ResultsDialogComponent implements OnInit, OnDestroy {
   }
 
   resetSession() {
+    this.close()
     this.session.reset()
   }
 }

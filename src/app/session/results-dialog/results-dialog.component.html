@@ -21,12 +21,16 @@
     </table>
     <footer>
       <div class="buttons-bar">
-        <button class="secondary" data-target="modal" (click)="close()">
-          Close
-        </button>
-        <button data-target="modal" (click)="close()">
-          Confirm
-        </button>
+        <a
+          role="button"
+          class="secondary"
+          data-target="modal"
+          routerLink="/lessons"
+          (click)="close()"
+        >
+          Back to lessons
+        </a>
+        <button data-target="modal" (click)="resetSession()">Try again</button>
       </div>
     </footer>
   </article>

@@ -24,7 +24,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private readonly wordCount = 150
   bookMetadata?: BookMetadata
-  queue = ':'
+  queue = ''
   stack = ''
 
   @Input() lesson?: Lesson
@@ -42,6 +42,14 @@ export class TerminalComponent implements OnInit, OnDestroy {
     if (this.lesson) {
       this.init()
     }
+
+    this.subsink.push(
+      this.session.reset$.subscribe((value: boolean) => {
+        if (value) {
+          this.reset()
+        }
+      })
+    )
   }
 
   ngOnDestroy(): void {
@@ -70,6 +78,12 @@ export class TerminalComponent implements OnInit, OnDestroy {
           })
       )
     }
+  }
+
+  reset() {
+    // TODO: Move everything from the stack over to the queue
+    this.queue = this.stack + this.queue
+    this.stack = ''
   }
 
   /**

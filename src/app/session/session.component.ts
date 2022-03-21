@@ -57,6 +57,15 @@ export class SessionComponent implements OnInit, OnDestroy {
       )
     )
 
+    this.subsink.push(
+      this.session.reset$.subscribe((value: boolean) => {
+        if (value) {
+          this.init()
+          this.start()
+        }
+      })
+    )
+
     this.init()
   }
 
@@ -110,7 +119,6 @@ export class SessionComponent implements OnInit, OnDestroy {
    * Start the session
    */
   start() {
-    console.log('starting session')
     if (this.timer$) {
       this.timerSub = this.timer$.subscribe()
     }

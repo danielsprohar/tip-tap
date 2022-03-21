@@ -1,5 +1,10 @@
 .buttons-bar {
   display: flex;
   flex-direction: row;
+  align-items: baseline;
   gap: 1rem;
+}
+
+.buttons-bar > * {
+  flex: 1
 }
