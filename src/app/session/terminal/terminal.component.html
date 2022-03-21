@@ -1,5 +1,5 @@
 <section class="container">
-  <ng-container *ngIf="lesson; else loading">
+  <ng-container *ngIf="lesson || book; else loading">
     <article #terminal id="terminal">
       <div id="stack">{{ stack }}</div>
       <div id="cursor"></div>

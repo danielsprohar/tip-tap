@@ -1,4 +1,4 @@
-import { Book } from "src/app/models/book"
+import { Book } from 'src/app/models/book'
 
 export type Level = 'beginner' | 'intermediate' | 'advanced'
 export type Hand = 'left' | 'right' | 'both'
@@ -21,5 +21,9 @@ export class Lesson {
     if (props) {
       Object.assign(this, props)
     }
+  }
+
+  get isBothHands() {
+    return this.hand === 'both'
   }
 }

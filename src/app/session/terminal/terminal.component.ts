@@ -9,8 +9,8 @@ import {
 import { Subscription } from 'rxjs'
 import { CharacterSpaceBuilder } from 'src/app/lessons/builders/CharacterSpaceBuilder'
 import { Lesson } from 'src/app/lessons/models/lesson'
-import { BookMetadata } from 'src/app/models/book'
-import { BookChapterResponse, BookService } from 'src/app/services/book.service'
+import { Book } from 'src/app/models/book'
+import { BookService } from 'src/app/services/book.service'
 import { KeyboardService } from '../services/keyboard.service'
 import { RandomWordGeneratorService } from '../services/random-word-generator.service'
 import { SessionService } from '../services/session.service'
@@ -23,11 +23,11 @@ import { SessionService } from '../services/session.service'
 export class TerminalComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private readonly wordCount = 150
-  bookMetadata?: BookMetadata
   queue = ''
   stack = ''
 
   @Input() lesson?: Lesson
+  @Input() book?: Book
   @ViewChild('terminal') terminalEl!: ElementRef
 
   constructor(
@@ -39,7 +39,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subsink.push(this.keyboard.event$.subscribe(this.parseKey.bind(this)))
-    if (this.lesson) {
+    if (this.lesson || this.book) {
       this.init()
     }
 
@@ -61,27 +61,16 @@ export class TerminalComponent implements OnInit, OnDestroy {
    * @returns
    */
   init() {
-    if (!this.lesson) return
-
-    if (!this.lesson.book) {
+    if (this.lesson) {
       const charSpace = new CharacterSpaceBuilder(this.lesson!).build()
       this.queue = this.rwg.createSessionText(charSpace, this.wordCount)
       this.keyboard.setHighlightKey(this.queue.charAt(0))
-    } else {
-      this.subsink.push(
-        this.bs
-          .getChapter(this.lesson.book!)
-          .subscribe((res: BookChapterResponse) => {
-            this.queue = res.text
-            this.bookMetadata = res.metadata
-            this.keyboard.setHighlightKey(this.queue.charAt(0))
-          })
-      )
+    } else if (this.book && this.book.chapter) {
+      this.queue = this.book.chapter.text
     }
   }
 
   reset() {
-    // TODO: Move everything from the stack over to the queue
     this.queue = this.stack + this.queue
     this.stack = ''
   }

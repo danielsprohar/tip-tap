@@ -1,27 +1,16 @@
-export interface BookMetadata {
-  title: string
-  author: string
-  chapters: string[]
-}
-
-export interface BookChapter {
-  name: string
-  text: string
-}
+import { BookChapter } from './book-chapter'
 
 export class Book {
-  title?: string
   author?: string
-  chapter?: string
+  title?: string
+  chapter?: BookChapter
   chapters?: BookChapter[]
-  metadata?: BookMetadata
 
   constructor(props?: {
-    title?: string
     author?: string
-    chapter?: string
-    chapters?: string[]
-    metadata?: BookMetadata
+    title?: string
+    chapter?: BookChapter
+    chapters?: BookChapter[]
   }) {
     if (props) {
       Object.assign(this, props)

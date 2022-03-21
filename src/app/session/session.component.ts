@@ -12,6 +12,7 @@ import {
 } from 'rxjs'
 import { LessonBuilder } from '../lessons/builders/LessonBuilder'
 import { Lesson } from '../lessons/models/lesson'
+import { Book } from '../models/book'
 import { Metrica } from './models/metrica'
 import { KeyboardService } from './services/keyboard.service'
 import { RandomWordGeneratorService } from './services/random-word-generator.service'
@@ -40,6 +41,7 @@ export class SessionComponent implements OnInit, OnDestroy {
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
   lesson$?: Observable<Lesson>
+  book$?: Observable<Book>
 
   constructor(
     readonly session: SessionService,
@@ -51,10 +53,19 @@ export class SessionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.keyboardHandler = this.handleKeyboard.bind(this)
     this.metrica$ = this.session.metrica$
+
+    // Check if we are doing a random word sequence
     this.lesson$ = this.route.queryParamMap.pipe(
       map((paramMap: ParamMap) =>
         new LessonBuilder().buildFromParamMap(paramMap)
       )
+    )
+
+    // Check if we are doing an "advanced" lesson
+    this.book$ = this.route.data.pipe(
+      map((data) => {
+        return data['book'] as Book
+      })
     )
 
     this.subsink.push(

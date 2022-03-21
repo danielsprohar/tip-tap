@@ -1,63 +1,77 @@
-<ng-container *ngIf="lesson$ | async as lesson; else loading">
-  <div class="container centered">
-    <ng-container *ngIf="!lesson.book; else advanced">
-      <h2>{{ lesson.hand | titlecase }} Hand <span>&verbar;</span> {{ lesson.finger | titlecase }}</h2>
+<div class="container centered">
+  <ng-container *ngIf="book$ | async as book; else notBook">
+    <h2>
+      <i>{{ book.title | titlecase }}</i> by {{ book.author }}
+    </h2>
+    <h4>{{ book.chapter?.title | titlecase }}</h4>
+  </ng-container>
+  <ng-template #notBook>
+    <ng-container *ngIf="lesson$ | async as lesson">
+      <h2>
+        {{ lesson.hand | titlecase }} 
+        <ng-container *ngIf="lesson.isBothHands; else oneHand">
+          Hands
+        </ng-container>
+        <ng-template #oneHand>
+          Hand
+        </ng-template>
+        &nbsp;
+        <span>&verbar;</span>
+        &nbsp;
+        {{ lesson.finger | titlecase }}
+      </h2>
     </ng-container>
-    <ng-template #advanced>
-      <h2>{{ lesson.book?.title! | dehyphenate | titlecase }}</h2>
-      <h3>{{ lesson.book?.chapter }}</h3>
-    </ng-template>
-  </div>
+  </ng-template>
+</div>
 
-  <section class="container">
-    <table>
-      <thead>
-        <th>Time</th>
-        <th>Errors</th>
-        <th>Characters</th>
-        <th>Words</th>
-        <th
-          data-tooltip="Words per minute = (characters / 5) / time (in minutes)"
-        >
-          WPM
-          <span class="info-icon"><i class="fa-solid fa-circle-info"></i></span>
-        </th>
-      </thead>
-      <tbody>
-        <tr>
-          <td *ngIf="inProgress && (timer$ | async) as timer; else default">
-            {{ session.duration - timer }}
-          </td>
-          <ng-template #default>
-            <td>{{ session.duration }}</td>
-          </ng-template>
+<section class="container">
+  <table>
+    <thead>
+      <th>Time</th>
+      <th>Errors</th>
+      <th>Characters</th>
+      <th>Words</th>
+      <th
+        data-tooltip="Words per minute = (characters / 5) / time (in minutes)"
+      >
+        WPM
+        <span class="info-icon"><i class="fa-solid fa-circle-info"></i></span>
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngIf="inProgress && (timer$ | async) as timer; else default">
+          {{ session.duration - timer }}
+        </td>
+        <ng-template #default>
+          <td>{{ session.duration }}</td>
+        </ng-template>
 
-          <ng-container
-            *ngIf="metrica$ | async as metrica; else defaultMetrica"
-          >
-            <td>{{ metrica.errorCount }}</td>
-            <td>{{ metrica.characterCount }}</td>
-            <td>{{ metrica.wordCount }}</td>
-            <td>{{ metrica.wpm }}</td>
-          </ng-container>
-          <ng-template #defaultMetrica>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-          </ng-template>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+        <ng-container *ngIf="metrica$ | async as metrica; else defaultMetrica">
+          <td>{{ metrica.errorCount }}</td>
+          <td>{{ metrica.characterCount }}</td>
+          <td>{{ metrica.wordCount }}</td>
+          <td>{{ metrica.wpm }}</td>
+        </ng-container>
+        <ng-template #defaultMetrica>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-  <app-terminal [lesson]="lesson"></app-terminal>
-  <app-keyboard></app-keyboard>
-  <app-results-dialog></app-results-dialog>
+<ng-container *ngIf="book$ | async as bc; else nb">
+  <app-terminal [book]="bc"></app-terminal>
 </ng-container>
-
-<ng-template #loading>
-  <div class="container">
-    <article aria-busy="true"></article>
-  </div>
+<ng-template #nb>
+  <ng-container *ngIf="lesson$ | async as lesson">
+    <app-terminal [lesson]="lesson"></app-terminal>
+  </ng-container>
 </ng-template>
+
+<app-keyboard></app-keyboard>
+<app-results-dialog></app-results-dialog>
