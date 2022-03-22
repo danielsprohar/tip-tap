@@ -20,7 +20,15 @@ Open a terminal (or command prompt) on your machine and run the following comman
 
 ```
 git clone https://github.com/danielsprohar/tip-tap.git
-cd tip-tap
+cd tip-tap/server
+npm install
+npm run start
+```
+
+Open another terminal to the root directory of this repository
+
+```
+cd web-app
 npm install
 npm run start
 ```
