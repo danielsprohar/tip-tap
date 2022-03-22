@@ -7,7 +7,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
-import { EMPTY, mergeMap, Observable, of, take } from 'rxjs'
+import { catchError, EMPTY, mergeMap, Observable, of, take } from 'rxjs'
 import { Book } from 'src/app/models/book'
 import { BookService } from 'src/app/services/book.service'
 
@@ -40,6 +40,10 @@ export class BookResolver implements Resolve<Book> {
           return of(book)
         }
 
+        this.router.navigateByUrl('/lessons')
+        return EMPTY
+      }),
+      catchError((err) => {
         this.router.navigateByUrl('/lessons')
         return EMPTY
       })

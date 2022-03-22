@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { BookResolver } from './resolvers/book.resolver'
+import { BookResolver } from '../resolvers/book.resolver'
 import { SessionComponent } from './session.component'
 
 const routes: Routes = [

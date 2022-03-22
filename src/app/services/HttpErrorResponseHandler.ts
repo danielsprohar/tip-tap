@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { throwError } from 'rxjs'
 
-export class AbstractBaseService {
+export class HttpErrorResponseHandler {
   protected handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

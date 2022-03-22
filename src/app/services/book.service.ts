@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core'
 import { catchError } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Book } from '../models/book'
-import { AbstractBaseService } from './abstract-base.service'
+import { HttpErrorResponseHandler } from './HttpErrorResponseHandler'
 
 @Injectable({
   providedIn: 'root',
 })
-export class BookService extends AbstractBaseService {
+export class BookService extends HttpErrorResponseHandler {
   private readonly url = environment.services.book.url
 
   constructor(private http: HttpClient) {
