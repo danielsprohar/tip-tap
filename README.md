@@ -4,9 +4,9 @@
 
 That's the sound of your keyboard when you're in the zone, typing your life away!
 
-![Session: dark theme](src/assets/images/session_preview_dark_theme.png)
+![Session: dark theme](web-app/src/assets/images/session_preview_dark_theme.png)
 
-![Session: light theme](src/assets/images/session_preview_light_theme.png)
+![Session: light theme](web-app/src/assets/images/session_preview_light_theme.png)
 
 ## Prequisites
 
