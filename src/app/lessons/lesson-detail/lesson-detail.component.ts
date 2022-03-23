@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { CharacterSpaceBuilder } from '../builders/CharacterSpaceBuilder'
+import { CharacterSpaceBuilder } from '../builders/character-space-builder'
 import { Lesson } from '../models/lesson'
 
 @Component({

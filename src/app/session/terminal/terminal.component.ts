@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { CharacterSpaceBuilder } from 'src/app/lessons/builders/CharacterSpaceBuilder'
+import { CharacterSpaceBuilder } from 'src/app/lessons/builders/character-space-builder'
 import { Lesson } from 'src/app/lessons/models/lesson'
 import { Book } from 'src/app/models/book'
 import { BookService } from 'src/app/services/book.service'
