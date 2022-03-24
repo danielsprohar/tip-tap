@@ -1,3 +1,29 @@
 .content {
-  margin-left: 200px
+  margin-left: 200px;
+}
+
+nav.tabs {
+  display: inline-flex;
+  border-bottom: thin solid;
+  border-color: var(--accordion-border-color);
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  
+  div {
+    cursor: pointer;
+  }
+  
+  .tab {
+    border: thin solid;
+    // border-radius: var(--border-radius);
+    border-color: var(--accordion-border-color);
+  }
+}
+
+.tab-content {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

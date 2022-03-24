@@ -1,266 +1,269 @@
-<app-sidenav></app-sidenav>
+<!-- <app-sidenav></app-sidenav> -->
 
 <div class="container content">
-  <section>
-    <section label="Beginner">
-      <section class="my-1" aria-labelledby="beginner">
-        <h1 id="beginner">Beginner</h1>
-        <div>
-          <section aria-labelledby="beginner_home_keys">
-            <h3 id="beginner_home_keys">Home Keys</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'left',
-                    isHomeKeys: true
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'right',
-                    isHomeKeys: true
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'both',
-                    isHomeKeys: true
-                  })
-                "
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
-
-          <section aria-labelledby="beginner_left_hand">
-            <h3 id="beginner_left_hand">Left Hand</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'left',
-                    finger: 'pinky'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'left',
-                    finger: 'ring'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'left',
-                    finger: 'middle'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'left',
-                    finger: 'pointy'
-                  })
-                "
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
-
-          <section aria-labelledby="beginner_right_hand">
-            <h3 id="beginner_right_hand">Right Hand</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'right',
-                    finger: 'pointy'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'right',
-                    finger: 'middle'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'right',
-                    finger: 'ring'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'beginner',
-                    hand: 'right',
-                    finger: 'pinky'
-                  })
-                "
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
+  <nav class="container tabs">
+    <ul>
+      <li class="tab">
+        <div #beginnerTabBtn (click)="openTab('beginner')">Beginner</div>
+      </li>
+      <li class="tab">
+        <div #intermediateTabBtn (click)="openTab('intermediate')">
+          Intermediate
         </div>
-      </section>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="beginnerContent" class="tab-content">
+    <section aria-labelledby="beginner_home_keys">
+      <h3 id="beginner_home_keys">Home Keys</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'left',
+              isHomeKeys: true
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'right',
+              isHomeKeys: true
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'both',
+              isHomeKeys: true
+            })
+          "
+        >
+        </app-lesson-detail>
+      </div>
     </section>
 
-    <section label="Intermediate">
-      <section class="my-1" aria-labelledby="intermediate">
-        <h1 id="intermediate">Intermediate</h1>
-        <div>
-          <section aria-labelledby="intermediate_left_hand">
-            <h3 id="intermediate_left_hand">Left Hand</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'left',
-                    finger: 'pinky'
-                  })
-                "
-              >
-              </app-lesson-detail>
+    <section aria-labelledby="beginner_left_hand">
+      <h3 id="beginner_left_hand">Left Hand</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'left',
+              finger: 'pinky'
+            })
+          "
+        >
+        </app-lesson-detail>
 
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'left',
-                    finger: 'ring'
-                  })
-                "
-              >
-              </app-lesson-detail>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'left',
+              finger: 'ring'
+            })
+          "
+        >
+        </app-lesson-detail>
 
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'left',
-                    finger: 'middle'
-                  })
-                "
-              >
-              </app-lesson-detail>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'left',
+              finger: 'middle'
+            })
+          "
+        >
+        </app-lesson-detail>
 
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'left',
-                    finger: 'pointy'
-                  })
-                "
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
-
-          <section aria-labelledby="intermediate_right_hand">
-            <h3 id="intermediate_right_hand">Right Hand</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'right',
-                    finger: 'pointy'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'right',
-                    finger: 'middle'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'right',
-                    finger: 'ring'
-                  })
-                "
-              >
-              </app-lesson-detail>
-
-              <app-lesson-detail
-                [lesson]="
-                  createLesson({
-                    level: 'intermediate',
-                    hand: 'right',
-                    finger: 'pinky'
-                  })
-                "
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
-
-          <section aria-labelledby="intermediate_both_hands">
-            <h3 id="intermediate_both_hands">Both Hands</h3>
-            <div>
-              <app-lesson-detail
-                [lesson]="createLesson({ level: 'intermediate', hand: 'both' })"
-              >
-              </app-lesson-detail>
-            </div>
-          </section>
-        </div>
-      </section>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'left',
+              finger: 'pointy'
+            })
+          "
+        >
+        </app-lesson-detail>
+      </div>
     </section>
 
-    <!-- <section label="Books">
+    <section aria-labelledby="beginner_right_hand">
+      <h3 id="beginner_right_hand">Right Hand</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'right',
+              finger: 'pointy'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'right',
+              finger: 'middle'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'right',
+              finger: 'ring'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'beginner',
+              hand: 'right',
+              finger: 'pinky'
+            })
+          "
+        >
+        </app-lesson-detail>
+      </div>
+    </section>
+  </div>
+
+  <div id="intermediateContent" class="tab-content">
+    <section aria-labelledby="intermediate_left_hand">
+      <h3 id="intermediate_left_hand">Left Hand</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'left',
+              finger: 'pinky'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'left',
+              finger: 'ring'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'left',
+              finger: 'middle'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'left',
+              finger: 'pointy'
+            })
+          "
+        >
+        </app-lesson-detail>
+      </div>
+    </section>
+
+    <section aria-labelledby="intermediate_right_hand">
+      <h3 id="intermediate_right_hand">Right Hand</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'right',
+              finger: 'pointy'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'right',
+              finger: 'middle'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'right',
+              finger: 'ring'
+            })
+          "
+        >
+        </app-lesson-detail>
+
+        <app-lesson-detail
+          [lesson]="
+            createLesson({
+              level: 'intermediate',
+              hand: 'right',
+              finger: 'pinky'
+            })
+          "
+        >
+        </app-lesson-detail>
+      </div>
+    </section>
+
+    <section aria-labelledby="intermediate_both_hands">
+      <h3 id="intermediate_both_hands">Both Hands</h3>
+      <div>
+        <app-lesson-detail
+          [lesson]="createLesson({ level: 'intermediate', hand: 'both' })"
+        >
+        </app-lesson-detail>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- <section label="Books">
       <section class="my-1" aria-labelledby="books">
         <h1 id="books">Books</h1>
         <p>
@@ -293,5 +296,3 @@
         </section>
       </section>
     </section> -->
-  </section>
-</div>
