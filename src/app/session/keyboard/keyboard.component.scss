@@ -1,6 +1,7 @@
-.keyboard {
+#keyboard {
   text-align: center;
   font-family: sans-serif;
+  font-size: 7px; // for small screens
 }
 
 .keyboard-row {
@@ -97,7 +98,7 @@
   font-size: 0.8em !important;
 }
 
-.keyboard > .keyboard-row {
+#keyboard > .keyboard-row {
   text-align: center;
 }
 
@@ -106,9 +107,26 @@
   color: #fff !important;
 }
 
-// @media (prefers-color-scheme: dark) {
-//   .keyboard-row > * {
-//     color: #eee;
-//     border-color: #eee;
-//   }
-// }
+@media (min-width: 576px) {
+  #keyboard {
+    font-size: 9.5px;
+  }
+}
+
+@media (min-width: 768px) {
+  #keyboard {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 992px) {
+  #keyboard {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #keyboard {
+    font-size: 21px;
+  }
+}

@@ -39,7 +39,7 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.resize()
+    // this.resize()
   }
 
   ngOnDestroy(): void {
@@ -48,26 +48,22 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Resize the keyboard keys when the window size changes.
-   */
-  @HostListener('window:resize')
-  resize() {
-    const keyboardEL: HTMLElement | null = document.getElementById('keyboard')
-    if (keyboardEL && keyboardEL.parentNode) {
-      const parent: Element | null = document.querySelector('.content')
-      if (parent) {
-        const size = Number(parent.clientWidth / 90).toPrecision(2)
-
-        this.renderer.setStyle(
-          keyboardEL,
-          'fontSize',
-          `${size}px !important`,
-          RendererStyleFlags2.Important
-        )
-      }
-    }
-  }
+  // @HostListener('window:resize')
+  // resize() {
+  //   const keyboard$: HTMLElement | null = document.getElementById('keyboard')
+  //   if (keyboard$ && keyboard$.parentNode) {
+  //     const parent$ = document.getElementById('content') as HTMLElement
+  //     if (parent$) {
+  //       const size = Number(parent$.clientWidth / 90).toPrecision(2)
+  //       // this.renderer.setStyle(
+  //       //   keyboard$,
+  //       //   'fontSize',
+  //       //   `${size}px`,
+  //       //   RendererStyleFlags2.Important
+  //       // )
+  //     }
+  //   }
+  // }
 
   isUpperCaseCharacter(value: string): boolean {
     const charCode = value.charCodeAt(0)
