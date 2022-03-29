@@ -33,9 +33,9 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(
     private keyboard: KeyboardService,
     private session: SessionService,
-    private rwg: RandomWordGeneratorService,
-    private bs: BookService
-  ) {}
+    private rwg: RandomWordGeneratorService
+  ) // private bs: BookService
+  {}
 
   ngOnInit(): void {
     this.subsink.push(this.keyboard.event$.subscribe(this.parseKey.bind(this)))
@@ -86,10 +86,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }, 100)
   }
 
-  parseKey(e: KeyboardEvent) {
+  parseKey(event: KeyboardEvent) {
     if (this.queue.length === 0) return
 
-    const { key } = e
+    const { key } = event
     if (key === 'Shift') return
     if (key === 'F12') return
 
@@ -100,10 +100,15 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }
 
     if (this.queue.length) {
+      // Highlight the next key in the queue
       this.keyboard.setHighlightKey(this.queue.charAt(0))
     }
   }
 
+  /**
+   * Handle the key after it has been parsed.
+   * @param key The key value
+   */
   handleKey(key: string) {
     if (key !== this.queue[0]) {
       this.flashTerminal()
@@ -139,7 +144,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
    * @returns TRUE if the given value is a whitespace character;
    * otherwise, FALSE.
    */
-  isHTMLWhitespace(value: string): boolean {
-    return value.charCodeAt(0) === 32 || value.charCodeAt(0) === 160
-  }
+  // isHTMLWhitespace(value: string): boolean {
+  //   return value.charCodeAt(0) === 32 || value.charCodeAt(0) === 160
+  // }
 }
