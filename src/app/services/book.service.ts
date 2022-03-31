@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { catchError } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Book } from '../models/book'
-import { HttpErrorResponseHandler } from './HttpErrorResponseHandler'
+import { HttpErrorResponseHandler } from './http-error-response-handler'
 
 @Injectable({
   providedIn: 'root',
