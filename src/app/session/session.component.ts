@@ -10,7 +10,7 @@ import {
   tap,
   timer,
 } from 'rxjs'
-import { LessonBuilder } from '../lessons/builders/LessonBuilder'
+import { LessonBuilder } from '../lessons/builders/lesson-builder'
 import { Lesson } from '../lessons/models/lesson'
 import { Book } from '../models/book'
 import { Metrica } from './models/metrica'
