@@ -4,6 +4,12 @@
 
 export const environment = {
   production: false,
+  rwg: {
+    defaults: {
+      wordSize: 5,
+      wordCount: 200,
+    },
+  },
   services: {
     book: {
       url: 'http://localhost:3000/books/',

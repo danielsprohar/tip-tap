@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing'
-
+import { environment } from 'src/environments/environment'
 import { RandomWordGeneratorService } from './random-word-generator.service'
 
 /**
@@ -17,22 +17,23 @@ function containsSubset(space: string[], a: string[]): boolean {
   const m = n === space.length ? a.length : space.length
 
   // the smaller set
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < m; j++) {
-      if (a[i] === space[j]) {
-        return true
-      }
-    }
-  }
+  for (let i = 0; i < n; i++)
+    // the larger set
+    for (let j = 0; j < m; j++) if (a[i] === space[j]) return true
 
   return false
 }
 
 describe('RandomWordGeneratorService', () => {
   let service: RandomWordGeneratorService
+  const characterSpace = ['a', 'b', 'c']
+  const wordSize = environment.rwg.defaults.wordSize
+  const wordCount = environment.rwg.defaults.wordCount
 
   beforeEach(() => {
-    TestBed.configureTestingModule({})
+    TestBed.configureTestingModule({
+      providers: [RandomWordGeneratorService],
+    })
     service = TestBed.inject(RandomWordGeneratorService)
   })
 
@@ -40,24 +41,27 @@ describe('RandomWordGeneratorService', () => {
     expect(service).toBeTruthy()
   })
 
-  it('#createRandomWord should create a random word', () => {
-    const characterSpace = ['a', 'b', 'c']
-    const wordLength = 5
+  it('#createRandomWord() should create a random word', () => {
+    const word = service.createRandomWord(characterSpace, wordSize)
 
-    const word = service.createRandomWord(characterSpace, wordLength)
-    const r0 = word.includes(characterSpace[0])
-    const r1 = word.includes(characterSpace[1])
-    const r2 = word.includes(characterSpace[2])
-
-    expect(word.length).toBe(wordLength)
+    expect(word.length).toBe(wordSize)
     expect(containsSubset(characterSpace, word.split(''))).toBeTrue()
   })
 
-  it('#createRandomWords should create random words', () => {
-    // TODO: Write test: createRandomWords
+  it('#createRandomWords() should create random words', () => {
+    const words = service
+      .createRandomWords(characterSpace, wordCount)
+      .filter((word) => word !== ' ')
+
+    expect(words.length).toBe(wordCount)
+
+    words.forEach((word: string) => {
+      expect(word.length).toBe(wordSize)
+    })
   })
 
-  it('#createSessionText should create the session text', () => {
-    // TODO: Write test: createSessionText
+  it('#createSessionText() should create the session text', () => {
+    const text = service.createSessionText(characterSpace, wordCount, wordSize)
+    expect(text.split(' ').length).toBe(wordCount)
   })
 })
