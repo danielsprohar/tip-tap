@@ -34,9 +34,28 @@ nav {
   }
 }
 
+.user-picture {
+  display: block;
+  img {
+    border-radius: 50%;
+  }
+}
+
+.login {
+  border: thin solid;
+}
+
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). 
 Show the link that contains should open and close the topnav (.hamburger) */
 @media screen and (max-width: 600px) {
+  .user-picture {
+    display: none;
+  }
+  
+  .login {
+    border: none;
+  }
+
   nav {
     .links,
     .links-auth {
@@ -79,7 +98,7 @@ This class makes the topnav look good on small screens (display the links vertic
       display: flex;
       flex-direction: column;
 
-      li {
+      li:not(.user-picture) {
         display: flex;
         justify-content: center;
         width: 100%;

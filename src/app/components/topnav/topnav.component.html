@@ -10,7 +10,7 @@
       </a>
     </li>
     <li>
-      <a routerLink="/">
+      <a routerLink="/" (click)="closeNav($event)">
         <strong>Tip Tap</strong>
       </a>
     </li>
@@ -18,15 +18,36 @@
 
   <ul class="links">
     <li>
-      <a routerLink="/">
+      <a routerLink="/" (click)="closeNav($event)">
         <strong>Tip Tap</strong>
       </a>
     </li>
-    <li><a routerLink="/lessons">Lessons</a></li>
+    <li><a routerLink="/lessons" (click)="closeNav($event)">Lessons</a></li>
   </ul>
 
   <ul class="links-auth">
-    <li><a href="">Log in</a></li>
-    <li><a href="">Sign up</a></li>
+    <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+      <li>
+        <a
+          href="javascript:void(0)"
+          (click)="logout()"
+        >
+          Log out
+        </a>
+      </li>
+      <ng-container *ngIf="auth.user$ | async as user">
+        <li class="user-picture">
+          <img [src]="user.picture" alt="User picture" height="32" width="32" />
+        </li>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <li>
+        <a class="login" href="javascript:void(0)" (click)="auth.loginWithRedirect()">
+          Log in
+        </a>
+      </li>
+    </ng-template>
   </ul>
 </nav>

@@ -9,6 +9,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module'
+import { AuthModule } from '@auth0/auth0-angular'
+import auth from 'auth_config.json'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,16 @@ import { SharedModule } from './shared/shared.module'
     WelcomeComponent,
     SnackbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    SharedModule,
+    AuthModule.forRoot({
+      clientId: auth.clientId,
+      domain: auth.domain,
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
