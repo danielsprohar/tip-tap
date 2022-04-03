@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SessionComponent,
   },
   {
-    path: 'book/:title/chapter/:chapterNumber',
+    path: 'book/:title/chapter/:chapter',
     component: SessionComponent,
     resolve: {
       book: BookResolver,

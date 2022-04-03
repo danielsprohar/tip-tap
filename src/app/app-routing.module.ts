@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
+import authConfig from '../../auth_config.json'
 
 const routes: Routes = [
   {
     path: '',
     component: WelcomeComponent,
+  },
+  {
+    path: 'login',
+    redirectTo: `https://${authConfig.domain}/authorize/`,
+    pathMatch: 'full',
   },
   {
     path: 'lessons',

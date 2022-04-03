@@ -40,11 +40,10 @@ export class BookResolver implements Resolve<Book> {
           return of(book)
         }
 
-        this.router.navigateByUrl('/lessons')
+        this.router.navigateByUrl('/lessons', { skipLocationChange: true })
         return EMPTY
       }),
       catchError((err) => {
-        // TODO: Log error
         this.router.navigateByUrl('/lessons')
         return EMPTY
       })

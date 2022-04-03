@@ -23,11 +23,7 @@ export class TopnavComponent implements OnInit {
     @Inject(DOCUMENT) public document: Document
   ) {}
 
-  ngOnInit(): void {
-    this.auth.user$.subscribe((user) => {
-      user?.picture
-    })
-  }
+  ngOnInit(): void {}
 
   toggleNav(e: MouseEvent) {
     e.preventDefault()
@@ -43,6 +39,10 @@ export class TopnavComponent implements OnInit {
     e.preventDefault()
     const navEl = this.navbarRef.nativeElement as HTMLElement
     this.renderer.removeClass(navEl, 'responsive')
+  }
+
+  login() {
+    this.auth.loginWithRedirect()
   }
 
   logout() {

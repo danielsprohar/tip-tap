@@ -7,10 +7,11 @@ import { TopnavComponent } from './components/topnav/topnav.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module'
 import { AuthModule } from '@auth0/auth0-angular'
-import auth from 'auth_config.json'
+import { AuthHttpInterceptor } from '@auth0/auth0-angular'
+import { environment } from 'src/environments/environment'
 
 @NgModule({
   declarations: [
@@ -26,11 +27,15 @@ import auth from 'auth_config.json'
     HttpClientModule,
     SharedModule,
     AuthModule.forRoot({
-      clientId: auth.clientId,
-      domain: auth.domain,
+      ...environment.auth,
+      httpInterceptor: {
+        ...environment.httpInterceptor,
+      },
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

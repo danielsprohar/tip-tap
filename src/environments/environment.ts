@@ -1,9 +1,20 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import authConfig from '../../auth_config.json'
+const resourceServerUrl = 'http://localhost:3000'
 
 export const environment = {
   production: false,
+  auth: {
+    domain: authConfig.domain,
+    clientId: authConfig.clientId,
+    audience: authConfig.audience,
+    redirectUri: window.location.origin,
+  },
+  httpInterceptor: {
+    allowedList: ['http://localhost:3000/*', `${authConfig.audience}/*`],
+  },
   rwg: {
     defaults: {
       wordSize: 5,
@@ -12,7 +23,7 @@ export const environment = {
   },
   services: {
     book: {
-      url: 'http://localhost:3000/books/',
+      url: `${resourceServerUrl}/books`,
     },
   },
 }
