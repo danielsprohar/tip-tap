@@ -17,7 +17,7 @@ describe('TerminalComponent', () => {
 
   beforeEach(async () => {
     keyboardSpy = jasmine.createSpyObj('KeyboardService', ['setHighlightKey'], {
-      event$: of(new KeyboardEvent('keyup', { key: '' })),
+      event$: of(new KeyboardEvent('keydown', { key: '' })),
     })
 
     sessionSpy = jasmine.createSpyObj(
@@ -77,7 +77,7 @@ describe('TerminalComponent', () => {
 
   describe('#parseKey()', () => {
     it('"Shift" key', () => {
-      const event = new KeyboardEvent('keyup', { key: 'Shift' })
+      const event = new KeyboardEvent('keydown', { key: 'Shift' })
 
       spyOn(component, 'handleBackspace')
       spyOn(component, 'handleKey')
@@ -89,7 +89,7 @@ describe('TerminalComponent', () => {
     })
 
     it('"F12" key', () => {
-      const event = new KeyboardEvent('keyup', { key: 'F12' })
+      const event = new KeyboardEvent('keydown', { key: 'F12' })
 
       spyOn(component, 'handleBackspace')
       spyOn(component, 'handleKey')
@@ -101,7 +101,7 @@ describe('TerminalComponent', () => {
     })
 
     it('"Backspace" key', () => {
-      const event = new KeyboardEvent('keyup', { key: 'Backspace' })
+      const event = new KeyboardEvent('keydown', { key: 'Backspace' })
 
       spyOn(component, 'handleBackspace')
 
@@ -112,7 +112,7 @@ describe('TerminalComponent', () => {
 
     it('should parse the given key emitted by the Keyoard and highlight the next key in the queue', () => {
       const expectedKey = defaultText.charAt(0)
-      const event = new KeyboardEvent('keyup', { key: expectedKey })
+      const event = new KeyboardEvent('keydown', { key: expectedKey })
 
       // component.queue = expectedKey
       spyOn(component, 'handleKey')

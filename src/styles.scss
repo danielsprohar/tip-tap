@@ -6,3 +6,7 @@ h1 {
   border-bottom: thin solid;
   border-color: var(--accordion-border-color);
 }
+
+.container {
+  max-width: 960px !important;
+}

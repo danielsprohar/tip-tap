@@ -4,7 +4,7 @@ import { KeyboardService } from './keyboard.service'
 
 describe('KeyboardService', () => {
   let service: KeyboardService
-  const mockEvent = new KeyboardEvent('keyup', {
+  const mockEvent = new KeyboardEvent('keydown', {
     key: 'a',
   })
 
