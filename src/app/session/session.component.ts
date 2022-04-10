@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { DOCUMENT } from '@angular/common'
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, ParamMap } from '@angular/router'
 import {
   finalize,
@@ -35,9 +36,10 @@ import { SessionService } from './services/session.service'
 export class SessionComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private timerSub?: Subscription
-  private keyboardHandler?: any
+  private keyboardHandler!: any
 
   inProgress = false
+  time: number = 0
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
   lesson$?: Observable<Lesson>
@@ -45,13 +47,14 @@ export class SessionComponent implements OnInit, OnDestroy {
 
   constructor(
     readonly session: SessionService,
-    private document: Document,
-    private keyboard: KeyboardService,
+    @Inject(DOCUMENT) private document: Document,
+    protected keyboard: KeyboardService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.keyboardHandler = this.handleKeyboard.bind(this)
+    // this.keyboardHandler = new KeyboardHandler(this, this.keyboard)
     this.metrica$ = this.session.metrica$
 
     // Check if we are doing a random word sequence
@@ -83,7 +86,9 @@ export class SessionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.timerSub) {
       this.timerSub.unsubscribe()
+      this.document.removeEventListener('keydown', this.keyboardHandler, true)
     }
+
     this.subsink.forEach((sub) => sub.unsubscribe())
   }
 
@@ -94,11 +99,13 @@ export class SessionComponent implements OnInit, OnDestroy {
    */
   private handleKeyboard(event: KeyboardEvent) {
     if (event.isComposing) return
-    event.preventDefault()
+    // event.preventDefault()
 
     if (!this.inProgress) {
       this.inProgress = true
+      this.start()
     }
+
     this.keyboard.setKeyboardEvent(event)
   }
 
@@ -131,7 +138,9 @@ export class SessionComponent implements OnInit, OnDestroy {
    */
   start() {
     if (this.timer$) {
-      this.timerSub = this.timer$.subscribe()
+      this.timerSub = this.timer$.subscribe(
+        (value: number) => (this.time = value)
+      )
     }
   }
 }

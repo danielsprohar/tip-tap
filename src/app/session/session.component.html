@@ -36,8 +36,8 @@
     </thead>
     <tbody>
       <tr>
-        <td *ngIf="inProgress && (timer$ | async) as timer; else default">
-          {{ timer }}
+        <td *ngIf="time; else default">
+          {{ time }}
         </td>
         <ng-template #default>
           <td>0</td>
