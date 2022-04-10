@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout'
+import { DOCUMENT } from '@angular/common'
+import { Component, Inject, OnInit } from '@angular/core'
+import { AuthService } from '@auth0/auth0-angular'
+import { Observable, map, shareReplay } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -6,7 +10,22 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    )
 
-  ngOnInit() {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public auth: AuthService,
+    @Inject(DOCUMENT) public document: Document
+  ) {}
+
+  ngOnInit(): void {}
+
+  logout() {
+    this.auth.logout({ returnTo: document.location.origin })
+  }
 }
