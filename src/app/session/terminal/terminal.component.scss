@@ -1,7 +1,7 @@
 #terminal {
   display: flex;
   font-size: 1.5rem;
-  font-family: 'Inconsolata', monospace;
+  font-family: monospace;
   padding: 0.75rem 0.25rem;
   overflow: hidden;
 }
@@ -24,11 +24,10 @@
 
 #cursor {
   min-height: 100%;
-  width: 1px;
-  border: thin solid;
-  border-color: var(--primary);
-  animation: blink 1s step-end infinite;
-  -webkit-animation: blink 1s step-end infinite;
+  width: 2px;
+  background: #673ab7;
+  animation: cursor-blink 1.5s steps(2) infinite;
+  -webkit-animation: cursor-blink 1.5s steps(2) infinite;
 }
 
 .flash {
@@ -59,24 +58,8 @@
   }
 }
 
-@keyframes blink {
-  from,
-  to {
-    visibility: hidden;
-  }
-
-  50% {
-    visibility: visible;
-  }
-}
-
-@-webkit-keyframes blink {
-  from,
-  to {
-    visibility: hidden;
-  }
-
-  50% {
-    visibility: visible;
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
   }
 }
