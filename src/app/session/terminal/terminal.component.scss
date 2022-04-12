@@ -10,6 +10,7 @@
 #queue {
   width: 50%;
   white-space: pre;
+  padding: 4px 0;
 }
 
 #stack {
@@ -25,7 +26,7 @@
 #cursor {
   min-height: 100%;
   width: 2px;
-  background: #673ab7;
+  background: #000;
   animation: cursor-blink 1.5s steps(2) infinite;
   -webkit-animation: cursor-blink 1.5s steps(2) infinite;
 }
@@ -61,5 +62,11 @@
 @keyframes cursor-blink {
   0% {
     opacity: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #cursor {
+    background-color: #0f0;
   }
 }
