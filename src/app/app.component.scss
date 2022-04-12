@@ -58,6 +58,16 @@ main {
 
 .app-name {
   margin-top: 12px;
+  font-variant: small-caps;
+  font-family: 'Merriweather', serif;
+}
+
+.mat-toolbar {
+  a.app-name {
+    text-decoration: none;
+    color: inherit;
+    margin-top: 4px;
+  }
 }
 
 .user-picture {
