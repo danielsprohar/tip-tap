@@ -1,4 +1,4 @@
-<div class="container centered">
+<div class="container centered mt-1">
   <ng-container *ngIf="book$ | async as book; else notBook">
     <h2>
       <i>{{ book.title | titlecase }}</i> by {{ book.author }}
@@ -20,19 +20,15 @@
       </h2>
     </ng-container>
   </ng-template>
+  <mat-divider></mat-divider>
 </div>
 
-<section class="container">
+<section class="container my-1">
   <table>
     <thead>
       <th>Time</th>
       <th>Errors</th>
-      <th
-        data-tooltip="Words per minute = (characters / 5) / time (in minutes)"
-      >
-        WPM
-        <span class="info-icon"><i class="fa-solid fa-circle-info"></i></span>
-      </th>
+      <th matTooltip="Words per minute">WPM</th>
     </thead>
     <tbody>
       <tr>
@@ -66,4 +62,4 @@
 </ng-template>
 
 <!-- <app-keyboard></app-keyboard> -->
-<app-results-dialog></app-results-dialog>
+<!-- <app-results-dialog></app-results-dialog> -->

@@ -1,37 +1,25 @@
-<dialog #modal id="modal">
-  <article>
-    <h3>Your Results</h3>
-    <table>
-      <thead>
-        <th>Errors</th>
-        <th>Total Characters</th>
-        <th>Total Words</th>
-        <th>Word / Minute</th>
-        <th>Accuracy</th>
-      </thead>
-      <tbody>
-        <tr *ngIf="metrica">
-          <td>{{ metrica.errorCount }}</td>
-          <td>{{ metrica.characterCount }}</td>
-          <td>{{ metrica.wordCount }}</td>
-          <td>{{ metrica.wpm }}</td>
-          <td>{{ metrica.accuracy | percent }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <footer>
-      <div class="buttons-bar">
-        <a
-          role="button"
-          class="secondary"
-          data-target="modal"
-          routerLink="/lessons"
-          (click)="close()"
-        >
-          Back to lessons
-        </a>
-        <button data-target="modal" (click)="resetSession()">Try again</button>
-      </div>
-    </footer>
-  </article>
-</dialog>
+<h2 mat-dialog-title>Session Metrics</h2>
+<div mat-dialog-content>
+  <table>
+    <thead>
+      <th>Errors</th>
+      <th>Total Characters</th>
+      <th>Total Words</th>
+      <th>Word / Minute</th>
+      <th>Accuracy</th>
+    </thead>
+    <tbody>
+      <tr *ngIf="data">
+        <td>{{ data.errorCount }}</td>
+        <td>{{ data.characterCount }}</td>
+        <td>{{ data.wordCount }}</td>
+        <td>{{ data.wpm }}</td>
+        <td>{{ data.accuracy | percent }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <a mat-button routerLink="/lessons" mat-dialog-close> Back to lessons </a>
+  <button mat-button (click)="resetSession()">Try again</button>
+</div>

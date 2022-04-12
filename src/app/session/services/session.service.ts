@@ -7,7 +7,7 @@ export class SessionService {
   private readonly metricaSubject = new BehaviorSubject<Metrica>(new Metrica())
   private readonly showResultsSubject = new Subject<Metrica>()
   private readonly resetSubject = new Subject<boolean>()
-  private readonly sessionDuration = 60
+  private readonly sessionDuration = 2
   private readonly wordSize = 5
 
   constructor() {}
@@ -34,10 +34,6 @@ export class SessionService {
 
   setMetrica(metrica: Metrica) {
     this.metricaSubject.next(metrica)
-  }
-
-  showResults() {
-    this.showResultsSubject.next(this.metricaSubject.value)
   }
 
   reset() {
