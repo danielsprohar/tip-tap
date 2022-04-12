@@ -7,6 +7,8 @@ import { LessonDetailComponent } from './lesson-detail/lesson-detail.component'
 import { SidenavComponent } from './sidenav/sidenav.component'
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatDividerModule } from '@angular/material/divider'
+import { MatListModule } from '@angular/material/list'
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
   declarations: [LessonsComponent, LessonDetailComponent, SidenavComponent],
@@ -15,6 +17,8 @@ import { MatDividerModule } from '@angular/material/divider'
     LessonsRoutingModule,
     MatTabsModule,
     MatDividerModule,
+    MatListModule,
+    MatCardModule,
   ],
 })
 export class LessonsModule {}
