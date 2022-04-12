@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { DOCUMENT } from '@angular/common'
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
 import { ActivatedRoute, ParamMap } from '@angular/router'
 import {
   finalize,
@@ -14,8 +16,8 @@ import { LessonBuilder } from '../lessons/builders/lesson-builder'
 import { Lesson } from '../lessons/models/lesson'
 import { Book } from '../models/book'
 import { Metrica } from './models/metrica'
+import { ResultsDialogComponent } from './results-dialog/results-dialog.component'
 import { KeyboardService } from './services/keyboard.service'
-import { RandomWordGeneratorService } from './services/random-word-generator.service'
 import { SessionService } from './services/session.service'
 
 @Component({
@@ -23,9 +25,6 @@ import { SessionService } from './services/session.service'
   templateUrl: './session.component.html',
   styleUrls: ['./session.component.scss'],
   providers: [
-    SessionService,
-    KeyboardService,
-    RandomWordGeneratorService,
     {
       provide: Document,
       useValue: document,
@@ -35,24 +34,30 @@ import { SessionService } from './services/session.service'
 export class SessionComponent implements OnInit, OnDestroy {
   private subsink = new Array<Subscription>()
   private timerSub?: Subscription
-  private keyboardHandler?: any
+  private keyboardHandler!: any
 
   inProgress = false
+  time: number = 0
   timer$: Observable<number> | null = null
   metrica$!: Observable<Metrica>
+  metrica!: Metrica
   lesson$?: Observable<Lesson>
   book$?: Observable<Book>
 
   constructor(
     readonly session: SessionService,
-    private document: Document,
-    private keyboard: KeyboardService,
-    private route: ActivatedRoute
+    @Inject(DOCUMENT) private document: Document,
+    protected keyboard: KeyboardService,
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.keyboardHandler = this.handleKeyboard.bind(this)
     this.metrica$ = this.session.metrica$
+    this.subsink.push(
+      this.session.metrica$.subscribe((metrica) => (this.metrica = metrica))
+    )
 
     // Check if we are doing a random word sequence
     this.lesson$ = this.route.queryParamMap.pipe(
@@ -83,7 +88,9 @@ export class SessionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.timerSub) {
       this.timerSub.unsubscribe()
+      this.document.removeEventListener('keydown', this.keyboardHandler, true)
     }
+
     this.subsink.forEach((sub) => sub.unsubscribe())
   }
 
@@ -94,11 +101,13 @@ export class SessionComponent implements OnInit, OnDestroy {
    */
   private handleKeyboard(event: KeyboardEvent) {
     if (event.isComposing) return
-    event.preventDefault()
+    // event.preventDefault()
 
     if (!this.inProgress) {
       this.inProgress = true
+      this.start()
     }
+
     this.keyboard.setKeyboardEvent(event)
   }
 
@@ -113,9 +122,15 @@ export class SessionComponent implements OnInit, OnDestroy {
       tap((secondsElapsed) => this.session.calcWordsPerMinute(secondsElapsed)),
       finalize(() => {
         this.document.removeEventListener('keydown', this.keyboardHandler, true)
-        this.session.showResults()
+        this.showResults()
       })
     )
+  }
+
+  private showResults() {
+    this.dialog.open(ResultsDialogComponent, {
+      data: this.session.metrica,
+    })
   }
 
   /**
@@ -131,7 +146,9 @@ export class SessionComponent implements OnInit, OnDestroy {
    */
   start() {
     if (this.timer$) {
-      this.timerSub = this.timer$.subscribe()
+      this.timerSub = this.timer$.subscribe(
+        (value: number) => (this.time = value)
+      )
     }
   }
 }

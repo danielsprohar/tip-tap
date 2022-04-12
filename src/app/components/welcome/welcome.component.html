@@ -1,69 +1,70 @@
-<!-- <section id="fingerPlacement">
+<div class="flex-column flex-centered my-1">
+  <section class="container">
+    <h1>Welcome to Tip Tap</h1>
+    <mat-divider></mat-divider>
+    <div class="my-1">
+      <p>
+        Practice typing using the
+        <a
+          data-tooltip="Wikipedia"
+          href="https://en.wikipedia.org/wiki/QWERTY"
+          target="_blank"
+        >
+          QWERTY
+        </a>
+        layout.
+      </p>
+      <h2>Finger Placement</h2>
+      <p>
+        Your index fingers, both left and right, should always find their way
+        back to <kbd>F</kbd> and <kbd>J</kbd>. The <kbd>F</kbd> and
+        <kbd>J</kbd> keys have small bumps on each key to easily identify them
+        without looking down at your keyboard.
+      </p>
+    </div>
+  </section>
 
-</section> -->
-<section class="container">
-  <h1>Welcome to Tip Tap</h1>
-  <p>
-    Practice typing using the
-    <a
-      data-tooltip="Wikipedia"
-      href="https://en.wikipedia.org/wiki/QWERTY"
-      target="_blank"
-    >
-      QWERTY
-    </a>
-    layout.
-    When you are ready to start typing check out the <a href="/lessons">lessons</a> section.
-  </p>
-  <h2>Finger Placement</h2>
-  <p>
-    Your index fingers, both left and right, should always find their way back
-    to <kbd>F</kbd> and <kbd>J</kbd>. The <kbd>F</kbd> and <kbd>J</kbd> keys
-    have small bumps on each key to easily identify them without looking down at
-    your keyboard.
-  </p>
-</section>
+  <section class="container centered">
+    <img
+      width="512"
+      alt="Typing-colour for-finger-positions"
+      src="../../../assets/images/512px-Typing-colour_for-finger-positions.svg.png"
+    />
 
-<section class="container centered">
-  <img
-    width="512"
-    alt="Typing-colour for-finger-positions"
-    src="../../../assets/images/512px-Typing-colour_for-finger-positions.svg.png"
-  />
+    <div>
+      <a
+        data-tooltip="Wikimedia"
+        href="https://commons.wikimedia.org/wiki/File:Typing-colour_for-finger-positions.svg"
+        target="_blank"
+      >
+        Cy21
+      </a>
+      ,
+      <a
+        data-tooltip="Creative Commons"
+        href="https://creativecommons.org/licenses/by-sa/3.0"
+        target="_blank"
+      >
+        CC BY-SA 3.0
+      </a>
+      , via Wikimedia Commons
+    </div>
+  </section>
 
-  <div>
-    <a
-      data-tooltip="Wikimedia"
-      href="https://commons.wikimedia.org/wiki/File:Typing-colour_for-finger-positions.svg"
-      target="_blank"
-    >
-      Cy21
-    </a>
-    ,
-    <a
-      data-tooltip="Creative Commons"
-      href="https://creativecommons.org/licenses/by-sa/3.0"
-      target="_blank"
-    >
-      CC BY-SA 3.0
-    </a>
-    , via Wikimedia Commons
-  </div>
-</section>
-
-<section class="container">
-  <table>
-    <thead>
-      <th>Finger</th>
-      <th>Color</th>
-      <th>Preview</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let datum of dataSource">
-        <td>{{ datum.finger }}</td>
-        <td>{{ datum.color }}</td>
-        <td [style.background]="datum.hexColorCode"></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <section class="container full-width my-1">
+    <table>
+      <thead>
+        <th>Finger</th>
+        <th>Color</th>
+        <th>Preview</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let datum of dataSource">
+          <td>{{ datum.finger }}</td>
+          <td>{{ datum.color }}</td>
+          <td [style.background]="datum.hexColorCode"></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

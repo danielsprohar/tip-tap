@@ -22,7 +22,7 @@ export class BookResolver implements Resolve<Book> {
     state: RouterStateSnapshot
   ): Observable<Book> {
     const title = route.paramMap.get('title')
-    const chapter = route.paramMap.get('chapterNumber')
+    const chapter = route.paramMap.get('chapter')
     if (!(title && chapter)) {
       this.router.navigateByUrl('/lessons')
       return EMPTY
@@ -40,7 +40,7 @@ export class BookResolver implements Resolve<Book> {
           return of(book)
         }
 
-        this.router.navigateByUrl('/lessons')
+        this.router.navigateByUrl('/lessons', { skipLocationChange: true })
         return EMPTY
       }),
       catchError((err) => {

@@ -3,23 +3,55 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { TopnavComponent } from './components/topnav/topnav.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module'
+import { AuthModule } from '@auth0/auth0-angular'
+import { AuthHttpInterceptor } from '@auth0/auth0-angular'
+import { environment } from 'src/environments/environment'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+// Angular Material
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { LayoutModule } from '@angular/cdk/layout'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatMenuModule } from '@angular/material/menu'
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopnavComponent,
     NotFoundComponent,
     WelcomeComponent,
     SnackbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    SharedModule,
+    AuthModule.forRoot({
+      ...environment.auth,
+      httpInterceptor: {
+        ...environment.httpInterceptor,
+      },
+    }),
+    // Angular Material
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

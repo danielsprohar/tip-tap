@@ -33,12 +33,7 @@ export class SessionService {
   }
 
   setMetrica(metrica: Metrica) {
-    console.log(metrica)
     this.metricaSubject.next(metrica)
-  }
-
-  showResults() {
-    this.showResultsSubject.next(this.metricaSubject.value)
   }
 
   reset() {
@@ -48,11 +43,11 @@ export class SessionService {
 
   /**
    * Calculate the number of words per minute (WPM).
-   * @param secondsElapsed The amount of time (in seconds)
+   * @param dt The time delta (in seconds)
    */
-  calcWordsPerMinute(secondsElapsed: number) {
+  calcWordsPerMinute(dt: number) {
     // https://www.speedtypingonline.com/typing-equations
-    if (secondsElapsed === 0) return
+    if (dt === 0) return
 
     this.metricaSubject.next(
       new Metrica({
@@ -62,7 +57,7 @@ export class SessionService {
           this.metricaSubject.value.characterCount /
             this.wordSize /
             // over time
-            (secondsElapsed / 60)
+            (dt / 60)
         ),
       })
     )
@@ -86,11 +81,11 @@ export class SessionService {
     )
   }
 
-  incrementErrorCount() {
+  incrementErrorCount(value = 1) {
     this.metricaSubject.next(
       new Metrica({
         ...this.metricaSubject.value,
-        errorCount: this.metricaSubject.value.errorCount + 1,
+        errorCount: this.metricaSubject.value.errorCount + value,
       })
     )
   }

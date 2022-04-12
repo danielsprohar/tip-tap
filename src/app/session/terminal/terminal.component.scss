@@ -10,6 +10,7 @@
 #queue {
   width: 50%;
   white-space: pre;
+  padding: 4px 0;
 }
 
 #stack {
@@ -24,11 +25,10 @@
 
 #cursor {
   min-height: 100%;
-  width: 1px;
-  border: thin solid;
-  border-color: var(--primary);
-  animation: blink 1s step-end infinite;
-  -webkit-animation: blink 1s step-end infinite;
+  width: 2px;
+  background: #000;
+  animation: cursor-blink 1.5s steps(2) infinite;
+  -webkit-animation: cursor-blink 1.5s steps(2) infinite;
 }
 
 .flash {
@@ -59,24 +59,14 @@
   }
 }
 
-@keyframes blink {
-  from,
-  to {
-    visibility: hidden;
-  }
-
-  50% {
-    visibility: visible;
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
   }
 }
 
-@-webkit-keyframes blink {
-  from,
-  to {
-    visibility: hidden;
-  }
-
-  50% {
-    visibility: visible;
+@media (prefers-color-scheme: dark) {
+  #cursor {
+    background-color: #0f0;
   }
 }

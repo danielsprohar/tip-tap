@@ -1,3 +1,67 @@
 main {
-  margin-top: 80px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.links {
+  display: inline-flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topnav {
+  justify-content: space-between;
+}
+
+.lhs {
+  display: flex;
+  align-items: center;
+}
+
+.app-name {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-name {
+  margin-top: 12px;
+}
+
+.user-picture {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
 }

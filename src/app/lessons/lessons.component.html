@@ -1,298 +1,311 @@
-<!-- <app-sidenav></app-sidenav> -->
-
-<div class="container content">
-  <nav class="container tabs">
-    <ul>
-      <li class="tab">
-        <div #beginnerTabBtn (click)="openTab('beginner')">Beginner</div>
-      </li>
-      <li class="tab">
-        <div #intermediateTabBtn (click)="openTab('intermediate')">
-          Intermediate
-        </div>
-      </li>
-    </ul>
-  </nav>
-
-  <div id="beginnerContent" class="tab-content">
-    <section aria-labelledby="beginner_home_keys">
-      <h3 id="beginner_home_keys">Home Keys</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'left',
-              isHomeKeys: true
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'right',
-              isHomeKeys: true
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'both',
-              isHomeKeys: true
-            })
-          "
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-
-    <section aria-labelledby="beginner_left_hand">
-      <h3 id="beginner_left_hand">Left Hand</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'left',
-              finger: 'pinky'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'left',
-              finger: 'ring'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'left',
-              finger: 'middle'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'left',
-              finger: 'pointy'
-            })
-          "
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-
-    <section aria-labelledby="beginner_right_hand">
-      <h3 id="beginner_right_hand">Right Hand</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'right',
-              finger: 'pointy'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'right',
-              finger: 'middle'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'right',
-              finger: 'ring'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'beginner',
-              hand: 'right',
-              finger: 'pinky'
-            })
-          "
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-  </div>
-
-  <div id="intermediateContent" class="tab-content">
-    <section aria-labelledby="intermediate_left_hand">
-      <h3 id="intermediate_left_hand">Left Hand</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'left',
-              finger: 'pinky'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'left',
-              finger: 'ring'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'left',
-              finger: 'middle'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'left',
-              finger: 'pointy'
-            })
-          "
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-
-    <section aria-labelledby="intermediate_right_hand">
-      <h3 id="intermediate_right_hand">Right Hand</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'right',
-              finger: 'pointy'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'right',
-              finger: 'middle'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'right',
-              finger: 'ring'
-            })
-          "
-        >
-        </app-lesson-detail>
-
-        <app-lesson-detail
-          [lesson]="
-            createLesson({
-              level: 'intermediate',
-              hand: 'right',
-              finger: 'pinky'
-            })
-          "
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-
-    <section aria-labelledby="intermediate_both_hands">
-      <h3 id="intermediate_both_hands">Both Hands</h3>
-      <div>
-        <app-lesson-detail
-          [lesson]="createLesson({ level: 'intermediate', hand: 'both' })"
-        >
-        </app-lesson-detail>
-      </div>
-    </section>
-  </div>
-</div>
-
-<!-- <section label="Books">
-      <section class="my-1" aria-labelledby="books">
-        <h1 id="books">Books</h1>
-        <p>
-          All texts were acquired from
-          <a href="https://en.wikisource.org/wiki/Main_Page"> Wikisource </a>.
-        </p>
-        <p>
-          All texts and are in the
-          <a
-            href="https://en.wikipedia.org/wiki/Public_domain"
-            title="wiki:Public domain"
+<mat-tab-group>
+  <mat-tab label="Beginner">
+    <div class="my-1 px-1" aria-labelledby="beginner">
+      <section aria-labelledby="beginner_home_keys">
+        <h1 id="beginner_home_keys">Home Keys</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'left',
+                isHomeKeys: true
+              })
+            "
           >
-            public domain
-          </a>
-          and available under the
-          <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-            Creative Commons Attribution-ShareAlike License </a
-          >.
-        </p>
-        <hr />
-        <section aria-labelledby="common_sense">
-          <h3 id="common_sense">Common Sense by Thomas Paine</h3>
-          <ul>
-            <li>
-              <a href="/session/book/common-sense/chapter/1">
-                Chapter 1 - Of the Origin and Design of Government
-              </a>
-            </li>
-          </ul>
-        </section>
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'right',
+                isHomeKeys: true
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'both',
+                isHomeKeys: true
+              })
+            "
+          >
+          </app-lesson-detail>
+        </div>
       </section>
-    </section> -->
+
+      <section aria-labelledby="beginner_left_hand" class="my-2">
+        <h1 id="beginner_left_hand">Left Hand</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'left',
+                finger: 'pinky'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'left',
+                finger: 'ring'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'left',
+                finger: 'middle'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'left',
+                finger: 'pointy'
+              })
+            "
+          >
+          </app-lesson-detail>
+        </div>
+      </section>
+
+      <section aria-labelledby="beginner_right_hand" class="my-2">
+        <h1 id="beginner_right_hand">Right Hand</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'right',
+                finger: 'pointy'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'right',
+                finger: 'middle'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'right',
+                finger: 'ring'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'beginner',
+                hand: 'right',
+                finger: 'pinky'
+              })
+            "
+          >
+          </app-lesson-detail>
+        </div>
+      </section>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Intermediate">
+    <div class="my-1 px-1" aria-labelledby="intermediate">
+      <section aria-labelledby="intermediate_left_hand">
+        <h1 id="intermediate_left_hand">Left Hand</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'left',
+                finger: 'pinky'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'left',
+                finger: 'ring'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'left',
+                finger: 'middle'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'left',
+                finger: 'pointy'
+              })
+            "
+          >
+          </app-lesson-detail>
+        </div>
+      </section>
+
+      <section aria-labelledby="intermediate_right_hand" class="my-2">
+        <h1 id="intermediate_right_hand">Right Hand</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'right',
+                finger: 'pointy'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'right',
+                finger: 'middle'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'right',
+                finger: 'ring'
+              })
+            "
+          >
+          </app-lesson-detail>
+
+          <app-lesson-detail
+            [lesson]="
+              createLesson({
+                level: 'intermediate',
+                hand: 'right',
+                finger: 'pinky'
+              })
+            "
+          >
+          </app-lesson-detail>
+        </div>
+      </section>
+
+      <section aria-labelledby="intermediate_both_hands" class="my-2">
+        <h1 id="intermediate_both_hands">Both Hands</h1>
+        <div class="lessons-list">
+          <app-lesson-detail
+            [lesson]="createLesson({ level: 'intermediate', hand: 'both' })"
+          >
+          </app-lesson-detail>
+        </div>
+      </section>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Pro">
+    <div class="my-1 px-1">
+      <section label="Books">
+        <h1 id="books">Books</h1>
+        <div>
+          <p>
+            All texts were acquired from
+            <a href="https://en.wikisource.org/wiki/Main_Page"> Wikisource </a>.
+          </p>
+          <p>
+            All texts and are in the
+            <a
+              href="https://en.wikipedia.org/wiki/Public_domain"
+              title="wiki:Public domain"
+            >
+              public domain
+            </a>
+            and available under the
+            <a href="https://creativecommons.org/licenses/by-sa/3.0/">
+              Creative Commons Attribution-ShareAlike License </a
+            >.
+          </p>
+
+          <section aria-labelledby="common_sense">
+            <div class="lessons-list">
+              <mat-card>
+                <h2 id="common_sense"><i>Common Sense</i> by Thomas Paine</h2>
+                <mat-list>
+                  <mat-list-item>
+                    <a href="/session/book/common-sense/chapter/1">
+                      Chapter 1 - Of the Origin and Design of Government
+                    </a>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a href="/session/book/common-sense/chapter/2">
+                      Chapter 2 - Of Monarchy and Hereditary Succession
+                    </a>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a href="/session/book/common-sense/chapter/3">
+                      Chapter 3 - Thoughts on the Present State of American
+                      Affairs
+                    </a>
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a href="/session/book/common-sense/chapter/4">
+                      Chapter 4 - Of the Present Ability of America
+                    </a>
+                  </mat-list-item>
+                </mat-list>
+              </mat-card>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </mat-tab>
+</mat-tab-group>

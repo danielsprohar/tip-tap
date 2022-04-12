@@ -1,4 +1,4 @@
-<div class="container centered">
+<div class="container centered mt-1">
   <ng-container *ngIf="book$ | async as book; else notBook">
     <h2>
       <i>{{ book.title | titlecase }}</i> by {{ book.author }}
@@ -8,13 +8,11 @@
   <ng-template #notBook>
     <ng-container *ngIf="lesson$ | async as lesson">
       <h2>
-        {{ lesson.hand | titlecase }} 
+        {{ lesson.hand | titlecase }}
         <ng-container *ngIf="lesson.isBothHands; else oneHand">
           Hands
         </ng-container>
-        <ng-template #oneHand>
-          Hand
-        </ng-template>
+        <ng-template #oneHand> Hand </ng-template>
         &nbsp;
         <span>&verbar;</span>
         &nbsp;
@@ -22,40 +20,30 @@
       </h2>
     </ng-container>
   </ng-template>
+  <mat-divider></mat-divider>
 </div>
 
-<section class="container">
+<section class="container my-1">
   <table>
     <thead>
       <th>Time</th>
       <th>Errors</th>
-      <th>Characters</th>
-      <th>Words</th>
-      <th
-        data-tooltip="Words per minute = (characters / 5) / time (in minutes)"
-      >
-        WPM
-        <span class="info-icon"><i class="fa-solid fa-circle-info"></i></span>
-      </th>
+      <th matTooltip="Words per minute">WPM</th>
     </thead>
     <tbody>
       <tr>
-        <td *ngIf="inProgress && (timer$ | async) as timer; else default">
-          {{ session.duration - timer }}
+        <td *ngIf="time; else default">
+          {{ time }}
         </td>
         <ng-template #default>
-          <td>{{ session.duration }}</td>
+          <td>0</td>
         </ng-template>
 
         <ng-container *ngIf="metrica$ | async as metrica; else defaultMetrica">
           <td>{{ metrica.errorCount }}</td>
-          <td>{{ metrica.characterCount }}</td>
-          <td>{{ metrica.wordCount }}</td>
           <td>{{ metrica.wpm }}</td>
         </ng-container>
         <ng-template #defaultMetrica>
-          <td>0</td>
-          <td>0</td>
           <td>0</td>
           <td>0</td>
         </ng-template>
@@ -72,6 +60,3 @@
     <app-terminal [lesson]="lesson"></app-terminal>
   </ng-container>
 </ng-template>
-
-<app-keyboard></app-keyboard>
-<app-results-dialog></app-results-dialog>

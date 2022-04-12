@@ -29,7 +29,7 @@ export class KeyboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.keyboardSub = this.keyboard.highlightKey$.subscribe(
-      (key: string | null) => {
+      (key: string) => {
         this.clearHighlightedKeyElements()
         if (key) {
           this.handleAddKeyboardHint(key)
