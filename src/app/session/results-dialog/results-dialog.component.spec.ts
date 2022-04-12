@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { SessionService } from '../services/session.service'
 
 import { ResultsDialogComponent } from './results-dialog.component'
@@ -10,7 +11,17 @@ describe('ResultsDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ResultsDialogComponent],
-      providers: [SessionService],
+      providers: [
+        SessionService,
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {},
+        },
+        {
+          provide: MatDialogRef,
+          useValue: {},
+        },
+      ],
     }).compileComponents()
   })
 
