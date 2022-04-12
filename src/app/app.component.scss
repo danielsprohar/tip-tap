@@ -42,3 +42,26 @@ main {
   text-decoration: none;
   color: inherit;
 }
+
+.app-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-name {
+  margin-top: 12px;
+}
+
+.user-picture {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}

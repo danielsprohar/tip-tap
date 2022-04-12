@@ -5,59 +5,63 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     mode="over"
-    >
-    <!-- [mode]="(isHandset$ | async) ? 'over' : 'side'" -->
-    <!-- [opened]="(isHandset$ | async) === false" -->
-    <mat-toolbar>Tip Tap</mat-toolbar>
+  >
+    <mat-toolbar>
+      <div class="logo-container">
+        <a routerLink="/">
+          <img src="assets\apple-touch-icon.png" alt="Home" class="app-logo" />
+        </a>
+        <span class="app-name">Tip Tap</span>
+      </div>
+    </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/lessons">Lessons</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar class="topnav mat-elevation-z2" >
+    <mat-toolbar class="topnav mat-elevation-z2">
       <div class="lhs">
         <button
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
           (click)="drawer.toggle()"
-          >
-          <!-- *ngIf="isHandset$ | async" -->
+        >
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <a mat-list-item routerLink="/" class="app-name">Tip Tap</a>
       </div>
 
-      <ul class="links">
+      <div>
         <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-          <li>
-            <button mat-button (click)="logout()">Log out</button>
-          </li>
           <ng-container *ngIf="auth.user$ | async as user">
-            <li class="user-picture">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
               <img
+                class="user-picture"
                 [src]="user.picture"
                 alt="User picture"
-                height="32"
-                width="32"
               />
-            </li>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()">Log out</button>
+            </mat-menu>
           </ng-container>
         </ng-container>
 
         <ng-template #loggedOut>
-          <li>
-            <a
-              mat-raised-button
-              color="primary"
-              href="javascript:void(0)"
-              (click)="auth.loginWithRedirect()"
-            >
-              Log in
-            </a>
-          </li>
+          <a
+            mat-raised-button
+            color="primary"
+            href="javascript:void(0)"
+            (click)="auth.loginWithRedirect()"
+          >
+            Log in
+          </a>
         </ng-template>
-      </ul>
+      </div>
     </mat-toolbar>
     <!-- Add Content Here -->
     <main class="container">
