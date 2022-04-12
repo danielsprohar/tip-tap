@@ -4,6 +4,7 @@
   font-family: monospace;
   padding: 0.75rem 0.25rem;
   overflow: hidden;
+  border-radius: 4px;
 }
 
 #stack,
@@ -41,7 +42,7 @@
 
 @-webkit-keyframes flash-animation {
   from {
-    background: var(--secondary);
+    background: #004d40;
     color: #000;
   }
   to {
@@ -51,7 +52,7 @@
 
 @keyframes flash-animation {
   from {
-    background: var(--secondary);
+    background: #004d40;
     color: #000;
   }
   to {
@@ -67,6 +68,26 @@
 
 @media (prefers-color-scheme: dark) {
   #cursor {
-    background-color: #0f0;
+    background-color: darkgrey;
+  }
+
+  @-webkit-keyframes flash-animation {
+    from {
+      background: #607d8b;
+      color: #000;
+    }
+    to {
+      background: default;
+    }
+  }
+
+  @keyframes flash-animation {
+    from {
+      background: #607d8b;
+      color: #000;
+    }
+    to {
+      background: default;
+    }
   }
 }

@@ -4,13 +4,12 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { CharacterSpaceBuilder } from 'src/app/lessons/builders/character-space-builder'
 import { Lesson } from 'src/app/lessons/models/lesson'
 import { Book } from 'src/app/models/book'
-import { BookService } from 'src/app/services/book.service'
 import { KeyboardService } from '../services/keyboard.service'
 import { RandomWordGeneratorService } from '../services/random-word-generator.service'
 import { SessionService } from '../services/session.service'
