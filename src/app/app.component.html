@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <!-- <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
           <ng-container *ngIf="auth.user$ | async as user">
             <button
               mat-icon-button
@@ -61,9 +61,10 @@
           >
             Log in
           </a>
-        </ng-template>
+        </ng-template> -->
       </div>
     </mat-toolbar>
+
     <!-- Add Content Here -->
     <main class="container">
       <router-outlet></router-outlet>
