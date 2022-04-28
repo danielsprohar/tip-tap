@@ -88,7 +88,9 @@ export class SessionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.timerSub) {
       this.timerSub.unsubscribe()
+      console.log('Unsubscribed from the Timer.')
       this.document.removeEventListener('keydown', this.keyboardHandler, true)
+      console.log('Removed the keyboard handler.')
     }
 
     this.subsink.forEach((sub) => sub.unsubscribe())
@@ -119,10 +121,14 @@ export class SessionComponent implements OnInit, OnDestroy {
     return timer(0, 1000).pipe(
       shareReplay(),
       takeWhile((secondsElapsed) => secondsElapsed <= this.session.duration),
-      tap((secondsElapsed) => this.session.calcWordsPerMinute(secondsElapsed)),
+      tap((secondsElapsed) => {
+        this.session.calcWordsPerMinute(secondsElapsed)
+        if (secondsElapsed === this.session.duration) {
+          this.showResults()
+        }
+      }),
       finalize(() => {
         this.document.removeEventListener('keydown', this.keyboardHandler, true)
-        this.showResults()
       })
     )
   }
