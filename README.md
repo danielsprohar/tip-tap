@@ -1,12 +1,6 @@
 # TipTap
 
-_Tippity tap tap tap_
-
-That's the sound of your keyboard when you're in the zone, typing your life away!
-
-![Session: dark theme](src/assets/images/session_preview_dark_theme.png)
-
-![Session: light theme](src/assets/images/session_preview_light_theme.png)
+A simple web app for typing practice with the QWERTY layout. Only the English language is supported at this time.
 
 ## Getting Started
 
